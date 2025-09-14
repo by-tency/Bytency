@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bytency - Turning Bytes into Brilliance</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
     <style>
         /* Global Styles */
         :root {
@@ -23,15 +24,15 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Poppins', sans-serif;
         }
 
         body {
             background: linear-gradient(135deg, #0f172a, #1e293b);
             color: var(--light);
             min-height: 100vh;
-            padding-top: 70px; /* Space for fixed header */
-            padding-bottom: 80px; /* Space for footer */
+            padding-top: 70px;
+            padding-bottom: 80px;
         }
 
         .container {
@@ -67,7 +68,8 @@
             font-size: 1.5rem;
             font-weight: 700;
             color: var(--light);
-            cursor: pointer; /* Make logo clickable to go home */
+            cursor: pointer;
+            text-decoration: none;
         }
 
         .logo span {
@@ -133,7 +135,7 @@
             align-items: center;
         }
 
-        .profile-area { /* Combined profile icon and dropdown trigger */
+        .profile-area {
             position: relative;
             display: flex;
             align-items: center;
@@ -269,7 +271,7 @@
             overflow: hidden;
             border: 1px solid var(--glass-border);
             transition: transform 0.3s, box-shadow 0.3s;
-            cursor: pointer; /* Make card clickable for details */
+            cursor: pointer;
         }
 
         .project-card:hover {
@@ -318,7 +320,7 @@
             color: var(--gray);
             margin-bottom: 15px;
             font-size: 0.9rem;
-            display: -webkit-box; /* For truncating text */
+            display: -webkit-box;
             -webkit-line-clamp: 3;
             -webkit-box-orient: vertical;
             overflow: hidden;
@@ -340,24 +342,43 @@
             font-weight: 500;
         }
 
-        .download-btn {
-            width: 100%;
+        .project-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .download-btn, .view-details-btn {
+            flex: 1;
             padding: 10px;
-            background: linear-gradient(to right, var(--primary), var(--primary-dark));
-            color: white;
             border: none;
             border-radius: 8px;
             cursor: pointer;
             font-weight: 600;
             transition: all 0.3s;
-            display: flex; /* For icon alignment */
+            display: flex;
             justify-content: center;
             align-items: center;
             gap: 8px;
         }
 
+        .download-btn {
+            background: linear-gradient(to right, var(--primary), var(--primary-dark));
+            color: white;
+        }
+
+        .view-details-btn {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--light);
+            border: 1px solid var(--glass-border);
+        }
+
         .download-btn:hover {
             background: linear-gradient(to right, var(--primary-dark), var(--primary));
+            transform: translateY(-2px);
+        }
+
+        .view-details-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
             transform: translateY(-2px);
         }
 
@@ -393,7 +414,9 @@
             border: 1px solid var(--glass-border);
             transform: translateY(20px);
             transition: transform 0.3s;
-            position: relative; /* For close button positioning */
+            position: relative;
+            max-height: 90vh;
+            overflow-y: auto;
         }
 
         .modal-overlay.active .modal {
@@ -420,7 +443,7 @@
             font-size: 1.5rem;
             cursor: pointer;
             transition: color 0.3s;
-            position: absolute; /* Position it inside header */
+            position: absolute;
             top: 15px;
             right: 15px;
         }
@@ -478,8 +501,8 @@
         /* Profile Dropdown */
         .profile-dropdown {
             position: absolute;
-            top: 60px; /* Position below the profile icon */
-            right: 0px; /* Align with the right edge of the nav */
+            top: 60px;
+            right: 0px;
             background: var(--dark);
             border-radius: 10px;
             width: 250px;
@@ -517,10 +540,10 @@
         .profile-email {
             color: var(--gray);
             font-size: 0.9rem;
-            word-break: break-all; /* Prevent long emails from breaking layout */
+            word-break: break-all;
         }
 
-        .profile-actions .profile-action { /* Style for buttons inside dropdown */
+        .profile-actions .profile-action {
             background: rgba(79, 70, 229, 0.2);
             color: var(--primary);
             border: none;
@@ -534,6 +557,7 @@
             align-items: center;
             gap: 10px;
             font-size: 1rem;
+            width: 100%;
         }
 
         .profile-actions .profile-action:hover {
@@ -556,7 +580,7 @@
             text-align: center;
         }
 
-        .about-content, .contact-content { /* Shared styling for content blocks */
+        .about-content, .contact-content {
             max-width: 800px;
             margin: 0 auto;
             background: var(--glass-bg);
@@ -577,45 +601,72 @@
         }
 
         /* Project Detail Modal */
+        .project-detail-modal .modal {
+            max-width: 800px;
+        }
+        
         .project-detail-modal .modal-body {
             padding: 30px;
         }
+        
         .project-detail-modal .modal-title {
             font-size: 1.8rem;
         }
+        
         .project-detail-modal .project-icon {
             width: 50px;
             height: 50px;
             font-size: 1.5rem;
         }
+        
         .project-detail-modal .project-description {
             font-size: 1rem;
             color: var(--light);
             margin-bottom: 25px;
-            -webkit-line-clamp: unset; /* Show full description */
+            -webkit-line-clamp: unset;
         }
+        
         .project-detail-modal .project-features {
             margin-bottom: 25px;
             gap: 10px;
         }
+        
         .project-detail-modal .project-feature {
             padding: 7px 15px;
             font-size: 0.9rem;
         }
+        
+        .project-detail-modal .project-actions {
+            margin-top: 25px;
+        }
+        
         .project-detail-modal .download-btn {
             padding: 12px;
             font-size: 1.1rem;
         }
-        .project-detail-modal .project-link { /* Link to demo/repo */
-            display: inline-block;
-            margin-top: 15px;
+        
+        .project-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
             color: var(--secondary);
             text-decoration: none;
             font-weight: 500;
             transition: color 0.3s;
+            padding: 8px 16px;
+            background: rgba(6, 182, 212, 0.1);
+            border-radius: 8px;
         }
-        .project-detail-modal .project-link:hover {
+        
+        .project-link:hover {
             color: var(--primary);
+            background: rgba(6, 182, 212, 0.2);
         }
 
         /* Footer */
@@ -664,10 +715,10 @@
         /* Responsive Styles */
         @media (max-width: 768px) {
             .nav-links {
-                display: none; /* Hidden by default, shown via JS toggle */
+                display: none;
                 flex-direction: column;
                 position: absolute;
-                top: 70px; /* Below header */
+                top: 70px;
                 left: 0;
                 width: 100%;
                 background: rgba(15, 23, 42, 0.95);
@@ -701,6 +752,10 @@
                 grid-template-columns: 1fr;
             }
 
+            .project-actions {
+                flex-direction: column;
+            }
+
             .footer-content {
                 flex-direction: column;
             }
@@ -708,26 +763,30 @@
             .social-links {
                 margin-bottom: 15px;
             }
+            
+            .project-links {
+                flex-direction: column;
+            }
         }
     </style>
 </head>
 <body>
     <header>
         <div class="container nav-container">
-            <div class="logo">
+            <a href="#" class="logo" data-page="home">
                 <i class="fas fa-code"></i>
                 Bytency<span>.</span>
-            </div>
+            </a>
 
             <nav class="nav-links">
-                <a href="#" class="nav-link" data-page="home">Home</a>
+                <a href="#" class="nav-link active" data-page="home">Home</a>
                 <a href="#" class="nav-link" data-page="projects">Projects</a>
                 <a href="#" class="nav-link" data-page="about">About</a>
                 <a href="#" class="nav-link" data-page="contact">Contact</a>
             </nav>
 
             <div class="nav-right">
-                <div class="downloads-count">
+                <div class="downloads-count" id="view-downloads">
                     <i class="fas fa-bookmark"></i>
                     <div class="count-badge">0</div>
                 </div>
@@ -736,7 +795,7 @@
                     <div class="profile-icon">
                         <i class="fas fa-user"></i>
                     </div>
-                    </div>
+                </div>
 
                 <button class="mobile-menu-btn">
                     <i class="fas fa-bars"></i>
@@ -746,7 +805,22 @@
     </header>
 
     <div class="profile-dropdown">
+        <div class="profile-info">
+            <div class="profile-name">Guest User</div>
+            <div class="profile-email">guest@example.com</div>
         </div>
+        <div class="profile-actions">
+            <button class="profile-action" id="edit-profile-btn">
+                <i class="fas fa-edit"></i> Edit Profile
+            </button>
+            <button class="profile-action" id="view-downloads-btn">
+                <i class="fas fa-download"></i> View Downloads
+            </button>
+            <button class="profile-action" id="login-logout-btn">
+                <i class="fas fa-sign-in-alt"></i> Login / Register
+            </button>
+        </div>
+    </div>
 
     <main>
         <section id="home" class="page-section active">
@@ -771,137 +845,11 @@
                     <button class="filter-btn" data-filter="ai">AI</button>
                 </div>
 
-                 <div class="projects-grid" id="projects-grid">
-                    <div class="project-card" data-project-id="1" data-category="birthday">
-                        <div class="project-header">
-                            <div class="project-icon">
-                                <i class="fas fa-birthday-cake"></i>
-                            </div>
-                            <div class="project-title">Happy Birthday Project</div>
-                            <div class="project-badge">Trending 🔥</div>
-                        </div>
-                        <div class="project-content">
-                            <p class="project-description">A beautiful birthday celebration website with animations and interactive elements. Perfect for wishing someone special!</p>
-                            <div class="project-features">
-                                <span class="project-feature">HTML</span>
-                                <span class="project-feature">CSS</span>
-                                <span class="project-feature">JS</span>
-                                <span class="project-feature">Responsive</span>
-                            </div>
-                            <a href="https://github.com/coderrrjay/Happy-Birthday-.git" class="download-btn" target="_blank">
-                                <i class="fas fa-download"></i> Download Project
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="project-card" data-project-id="2" data-category="ecommerce">
-                        <div class="project-header">
-                            <div class="project-icon">
-                                <i class="fas fa-shopping-cart"></i>
-                            </div>
-                            <div class="project-title">E-Commerce Dashboard</div>
-                            <div class="project-badge">Popular ⭐</div>
-                        </div>
-                        <div class="project-content">
-                            <p class="project-description">Complete e-commerce dashboard with analytics, product management, and order tracking. Built for scalability.</p>
-                            <div class="project-features">
-                                <span class="project-feature">React</span>
-                                <span class="project-feature">Node.js</span>
-                                <span class="project-feature">MongoDB</span>
-                                <span class="project-feature">Responsive</span>
-                            </div>
-                            <a href="https://l.ead.me/Laddu" class="download-btn" target="_blank">
-                                <i class="fas fa-download"></i> Download Project
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="project-card" data-project-id="3" data-category="game">
-                        <div class="project-header">
-                            <div class="project-icon">
-                                <i class="fas fa-gamepad"></i>
-                            </div>
-                            <div class="project-title">JavaScript Game</div>
-                        </div>
-                        <div class="project-content">
-                            <p class="project-description">A fun browser-based game built with vanilla JavaScript and HTML5 Canvas. Challenge your friends!</p>
-                            <div class="project-features">
-                                <span class="project-feature">JavaScript</span>
-                                <span class="project-feature">HTML5</span>
-                                <span class="project-feature">Canvas</span>
-                                <span class="project-feature">Game</span>
-                            </div>
-                            <a href="https://l.ead.me/Laddu" class="download-btn" target="_blank">
-                                <i class="fas fa-download"></i> Download Project
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="project-card" data-project-id="4" data-category="ui">
-                        <div class="project-header">
-                            <div class="project-icon">
-                                <i class="fas fa-mobile-alt"></i>
-                            </div>
-                            <div class="project-title">UI Component Library</div>
-                            <div class="project-badge">New ✨</div>
-                        </div>
-                        <div class="project-content">
-                            <p class="project-description">A collection of reusable UI components for modern web applications. Speed up your UI development.</p>
-                            <div class="project-features">
-                                <span class="project-feature">Vue.js</span>
-                                <span class="project-feature">SCSS</span>
-                                <span class="project-feature">Component-based</span>
-                            </div>
-                            <a href="https://l.ead.me/Laddu" class="download-btn" target="_blank">
-                                <i class="fas fa-download"></i> Download Project
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="project-card" data-project-id="5" data-category="data">
-                        <div class="project-header">
-                            <div class="project-icon">
-                                <i class="fas fa-chart-line"></i>
-                            </div>
-                            <div class="project-title">Data Visualization</div>
-                        </div>
-                        <div class="project-content">
-                            <p class="project-description">Interactive data visualization dashboard with multiple chart types and filtering options.</p>
-                            <div class="project-features">
-                                <span class="project-feature">D3.js</span>
-                                <span class="project-feature">React</span>
-                                <span class="project-feature">API Integration</span>
-                            </div>
-                            <a href="https://l.ead.me/Laddu" class="download-btn" target="_blank">
-                                <i class="fas fa-download"></i> Download Project
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="project-card" data-project-id="6" data-category="ai">
-                        <div class="project-header">
-                            <div class="project-icon">
-                                <i class="fas fa-robot"></i>
-                            </div>
-                            <div class="project-title">AI Chatbot</div>
-                            <div class="project-badge">Trending 🔥</div>
-                        </div>
-                        <div class="project-content">
-                            <p class="project-description">An intelligent chatbot implementation with natural language processing capabilities.</p>
-                            <div class="project-features">
-                                <span class="project-feature">Python</span>
-                                <span class="project-feature">TensorFlow</span>
-                                <span class="project-feature">NLP</span>
-                            </div>
-                            <a href="https://l.ead.me/Laddu" class="download-btn" target="_blank">
-                                <i class="fas fa-download"></i> Download Project
-                            </a>
-                        </div>
-                    </div>
+                <div class="projects-grid" id="projects-grid">
+                    <!-- Project cards will be dynamically generated here -->
                 </div>
             </div>
         </section>
-
 
         <section id="about" class="page-section">
             <div class="container">
@@ -950,17 +898,18 @@
     <footer>
         <div class="container footer-content">
             <div class="social-links">
-                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                <a href="#" aria-label="Telegram"><i class="fab fa-telegram"></i></a>
-                <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-                <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
-                </div>
+                <a href="https://www.instagram.com/bytency?igsh=aXIybWRoZWRqdzF4" aria-label="Instagram" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://t.me/Bytency" aria-label="Telegram" target="_blank"><i class="fab fa-telegram"></i></a>
+                <a href="https://whatsapp.com/channel/0029VbBZ04k23n3cd7Q2oS2w" aria-label="WhatsApp" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                <a href="https://github.com/coderrrjay" aria-label="GitHub" target="_blank"><i class="fab fa-github"></i></a>
+            </div>
             <div class="footer-text">
                 © 2023 Bytency. All rights reserved. Crafted with <span class="highlight">passion</span> by Jay.
             </div>
         </div>
     </footer>
 
+    <!-- Modals -->
     <div class="modal-overlay" id="welcome-modal">
         <div class="modal">
             <div class="modal-header">
@@ -1004,7 +953,10 @@
                 <p class="text-center" style="margin-top: 15px; color: var(--gray);">Don't have an account? <button id="show-register-form" class="btn-link">Register</button></p>
             </div>
         </div>
-        <div class="modal" id="register-form-modal" style="display: none;">
+    </div>
+
+    <div class="modal-overlay" id="register-modal">
+        <div class="modal">
             <div class="modal-header">
                 <h3 class="modal-title">Register Account</h3>
                 <button class="close-modal">&times;</button>
@@ -1069,7 +1021,8 @@
     <div class="modal-overlay project-detail-modal" id="project-detail-modal">
         <div class="modal">
             <div class="modal-header">
-                <div class="project-header-detail"> <div class="project-icon" id="detail-project-icon"></div>
+                <div class="project-header-detail">
+                    <div class="project-icon" id="detail-project-icon"></div>
                     <h3 class="modal-title" id="detail-project-title"></h3>
                 </div>
                 <button class="close-modal">&times;</button>
@@ -1078,88 +1031,123 @@
                 <p class="project-description" id="detail-project-description"></p>
                 <div class="project-features" id="detail-project-features"></div>
                 
-                <div id="project-extra-links">
-                    </div>
+                <div class="project-links" id="project-extra-links">
+                    <!-- Links will be added dynamically -->
+                </div>
 
-                <button class="download-btn" id="modal-download-btn">
-                    <i class="fas fa-download"></i> Download Project
-                </button>
+                <div class="project-actions">
+                    <button class="download-btn" id="modal-download-btn">
+                        <i class="fas fa-download"></i> Download Project
+                    </button>
+                </div>
             </div>
         </div>
     </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // --- DOM Elements ---
-            const welcomeModal = document.getElementById('welcome-modal');
-            const loginRegisterModal = document.getElementById('login-register-modal');
-            const registerFormModal = document.getElementById('register-form-modal'); // The register form div
-            const profileModal = document.getElementById('profile-modal');
-            const downloadsModal = document.getElementById('downloads-modal');
-            const projectDetailModal = document.getElementById('project-detail-modal');
+            // Sample project data with actual links
+            const projectsData = [
+                {
+                    id: "1",
+                    category: "birthday",
+                    icon: "fa-birthday-cake",
+                    title: "Happy Birthday Project",
+                    badge: "Trending 🔥",
+                    description: "A beautiful birthday celebration website with animations and interactive elements. Perfect for wishing someone special! Features include customizable messages, countdown timer, and charming animations.",
+                    features: ["HTML", "CSS", "JS", "Responsive", "Animations"],
+                    demoLink: "https://coderrrjay.github.io/Happy-Birthday-/",
+                    repoLink: "https://github.com/coderrrjay/Happy-Birthday-",
+                    downloadLink: "https://github.com/coderrrjay/Happy-Birthday-/archive/refs/heads/main.zip"
+                },
+                {
+                    id: "2",
+                    category: "ecommerce",
+                    icon: "fa-shopping-cart",
+                    title: "E-Commerce Dashboard",
+                    badge: "Popular ⭐",
+                    description: "Complete e-commerce dashboard with analytics, product management, and order tracking. Built for scalability and ease of use, allowing businesses to manage their online store efficiently.",
+                    features: ["React", "Node.js", "MongoDB", "Responsive", "API Integration"],
+                    demoLink: "https://example-ecommerce-demo.netlify.app/",
+                    repoLink: "https://github.com/coderrrjay/ecommerce-dashboard",
+                    downloadLink: "https://github.com/coderrrjay/ecommerce-dashboard/archive/refs/heads/main.zip"
+                },
+                {
+                    id: "3",
+                    category: "game",
+                    icon: "fa-gamepad",
+                    title: "JavaScript Game",
+                    description: "A fun browser-based game built with vanilla JavaScript and HTML5 Canvas. Challenge your friends with this engaging arcade-style game!",
+                    features: ["JavaScript", "HTML5", "Canvas", "Game", "Performance Optimized"],
+                    demoLink: "https://coderrrjay.github.io/js-arcade-game/",
+                    repoLink: "https://github.com/coderrrjay/js-arcade-game",
+                    downloadLink: "https://github.com/coderrrjay/js-arcade-game/archive/refs/heads/main.zip"
+                },
+                {
+                    id: "4",
+                    category: "ui",
+                    icon: "fa-mobile-alt",
+                    title: "UI Component Library",
+                    badge: "New ✨",
+                    description: "A collection of reusable UI components for modern web applications. Speed up your UI development with pre-built, customizable, and accessible components.",
+                    features: ["Vue.js", "SCSS", "Component-based", "Theming"],
+                    demoLink: "https://coderrrjay-ui-library.netlify.app/",
+                    repoLink: "https://github.com/coderrrjay/ui-component-library",
+                    downloadLink: "https://github.com/coderrrjay/ui-component-library/archive/refs/heads/main.zip"
+                },
+                {
+                    id: "5",
+                    category: "data",
+                    icon: "fa-chart-line",
+                    title: "Data Visualization",
+                    description: "Interactive data visualization dashboard with multiple chart types and filtering options. Helps in understanding complex data at a glance.",
+                    features: ["D3.js", "React", "API Integration", "Charts", "Filtering"],
+                    demoLink: "https://coderrrjay-dataviz.netlify.app/",
+                    repoLink: "https://github.com/coderrrjay/data-visualization-dashboard",
+                    downloadLink: "https://github.com/coderrrjay/data-visualization-dashboard/archive/refs/heads/main.zip"
+                },
+                {
+                    id: "6",
+                    category: "ai",
+                    icon: "fa-robot",
+                    title: "AI Chatbot",
+                    badge: "Trending 🔥",
+                    description: "An intelligent chatbot implementation with natural language processing capabilities. Integrates with various platforms for seamless interaction.",
+                    features: ["Python", "TensorFlow", "NLP", "Machine Learning"],
+                    demoLink: "https://coderrrjay-ai-chatbot.streamlit.app/",
+                    repoLink: "https://github.com/coderrrjay/ai-chatbot",
+                    downloadLink: "https://github.com/coderrrjay/ai-chatbot/archive/refs/heads/main.zip"
+                }
+            ];
 
+            // DOM Elements
+            const projectsGrid = document.getElementById('projects-grid');
             const profileDropdown = document.querySelector('.profile-dropdown');
-            const profileArea = document.querySelector('.profile-area'); // The container for icon and dropdown
             const profileIcon = document.querySelector('.profile-icon');
             const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
             const navLinksContainer = document.querySelector('.nav-links');
             const closeModalButtons = document.querySelectorAll('.close-modal');
-
+            const navLinks = document.querySelectorAll('.nav-link');
+            const pageSections = document.querySelectorAll('.page-section');
+            const searchBar = document.querySelector('.search-bar');
+            const projectFilters = document.querySelectorAll('.filter-btn');
+            const downloadsBadge = document.querySelector('.count-badge');
+            
+            // Modals
+            const welcomeModal = document.getElementById('welcome-modal');
+            const loginRegisterModal = document.getElementById('login-register-modal');
+            const registerModal = document.getElementById('register-modal');
+            const profileModal = document.getElementById('profile-modal');
+            const downloadsModal = document.getElementById('downloads-modal');
+            const projectDetailModal = document.getElementById('project-detail-modal');
+            
+            // Forms
             const welcomeForm = document.getElementById('welcome-form');
             const loginForm = document.getElementById('login-form');
             const registerForm = document.getElementById('register-form');
             const profileForm = document.getElementById('profile-form');
             const contactForm = document.getElementById('contact-form');
-
-            const editProfileBtn = document.getElementById('edit-profile-btn');
-            const viewDownloadsBtn = document.getElementById('view-downloads-btn');
-            const downloadButtons = document.querySelectorAll('.download-btn:not(.view-details-btn)'); // Exclude detail view buttons
-            const viewDetailsButtons = document.querySelectorAll('.view-details-btn');
-            const downloadsBadge = document.querySelector('.count-badge');
-            const navLinks = document.querySelectorAll('.nav-link');
-            const pageSections = document.querySelectorAll('.page-section');
-            const searchBar = document.querySelector('.search-bar');
-            const projectCards = document.querySelectorAll('.project-card');
-            const projectFilters = document.querySelectorAll('.filter-btn');
-            const projectsGrid = document.getElementById('projects-grid');
-
-            // Footer Social Links
-            const socialLinks = document.querySelectorAll('.social-links a');
-
-            // Profile Dropdown Elements (to be populated by JS)
-            const dropdownProfileName = document.createElement('div');
-            dropdownProfileName.className = 'profile-name';
-            const dropdownProfileEmail = document.createElement('div');
-            dropdownProfileEmail.className = 'profile-email';
-            const profileInfoDiv = document.createElement('div');
-            profileInfoDiv.className = 'profile-info';
-            profileInfoDiv.appendChild(dropdownProfileName);
-            profileInfoDiv.appendChild(dropdownProfileEmail);
-
-            const profileActionsDiv = document.createElement('div');
-            profileActionsDiv.className = 'profile-actions';
-
-            const editProfileBtnDropdown = document.createElement('button');
-            editProfileBtnDropdown.className = 'profile-action';
-            editProfileBtnDropdown.innerHTML = '<i class="fas fa-edit"></i> Edit Profile';
-            editProfileBtnDropdown.id = 'edit-profile-btn'; // Retain ID for JS hook
-
-            const viewDownloadsBtnDropdown = document.createElement('button');
-            viewDownloadsBtnDropdown.className = 'profile-action';
-            viewDownloadsBtnDropdown.innerHTML = '<i class="fas fa-download"></i> View Downloads';
-            viewDownloadsBtnDropdown.id = 'view-downloads-btn'; // Retain ID for JS hook
-
-            const loginLogoutBtnDropdown = document.createElement('button');
-            loginLogoutBtnDropdown.className = 'profile-action';
-            loginLogoutBtnDropdown.id = 'login-logout-btn';
-
-            profileActionsDiv.appendChild(editProfileBtnDropdown);
-            profileActionsDiv.appendChild(viewDownloadsBtnDropdown);
-            profileActionsDiv.appendChild(loginLogoutBtnDropdown);
-
-            profileDropdown.appendChild(profileInfoDiv);
-            profileDropdown.appendChild(profileActionsDiv);
-
+            
             // Project Detail Modal Elements
             const detailProjectIcon = document.getElementById('detail-project-icon');
             const detailProjectTitle = document.getElementById('detail-project-title');
@@ -1167,344 +1155,97 @@
             const detailProjectFeatures = document.getElementById('detail-project-features');
             const projectExtraLinksDiv = document.getElementById('project-extra-links');
             const modalDownloadBtn = document.getElementById('modal-download-btn');
-
-            // --- Sample Project Data (Simulating a backend) ---
-            const projectsData = [
-                {
-                    id: "1", category: "birthday", icon: "fa-birthday-cake", title: "Happy Birthday Project", badge: "Trending 🔥",
-                    description: "A beautiful birthday celebration website with animations and interactive elements. Perfect for wishing someone special! Features include customizable messages, countdown timer, and charming animations.",
-                    features: ["HTML", "CSS", "JS", "Responsive", "Animations"],
-                    demoLink: "#", // Placeholder
-                    repoLink: "#", // Placeholder
-                    downloadLink: "https://example.com/downloads/happy-birthday.zip" // Placeholder
-                },
-                {
-                    id: "2", category: "ecommerce", icon: "fa-shopping-cart", title: "E-Commerce Dashboard", badge: "Popular ⭐",
-                    description: "Complete e-commerce dashboard with analytics, product management, and order tracking. Built for scalability and ease of use, allowing businesses to manage their online store efficiently.",
-                    features: ["React", "Node.js", "MongoDB", "Responsive", "API Integration"],
-                    demoLink: "#",
-                    repoLink: "#",
-                    downloadLink: "https://example.com/downloads/ecommerce-dashboard.zip"
-                },
-                {
-                    id: "3", category: "game", icon: "fa-gamepad", title: "JavaScript Game",
-                    description: "A fun browser-based game built with vanilla JavaScript and HTML5 Canvas. Challenge your friends with this engaging arcade-style game!",
-                    features: ["JavaScript", "HTML5", "Canvas", "Game", "Performance Optimized"],
-                    demoLink: "#",
-                    repoLink: "#",
-                    downloadLink: "https://example.com/downloads/js-game.zip"
-                },
-                {
-                    id: "4", category: "ui", icon: "fa-mobile-alt", title: "UI Component Library", badge: "New ✨",
-                    description: "A collection of reusable UI components for modern web applications. Speed up your UI development with pre-built, customizable, and accessible components.",
-                    features: ["Vue.js", "SCSS", "Component-based", "Theming"],
-                    demoLink: "#",
-                    repoLink: "#",
-                    downloadLink: "https://example.com/downloads/ui-library.zip"
-                },
-                {
-                    id: "5", category: "data", icon: "fa-chart-line", title: "Data Visualization",
-                    description: "Interactive data visualization dashboard with multiple chart types and filtering options. Helps in understanding complex data at a glance.",
-                    features: ["D3.js", "React", "API Integration", "Charts", "Filtering"],
-                    demoLink: "#",
-                    repoLink: "#",
-                    downloadLink: "https://example.com/downloads/data-viz.zip"
-                },
-                {
-                    id: "6", category: "ai", icon: "fa-robot", title: "AI Chatbot", badge: "Trending 🔥",
-                    description: "An intelligent chatbot implementation with natural language processing capabilities. Integrates with various platforms for seamless interaction.",
-                    features: ["Python", "TensorFlow", "NLP", "Machine Learning"],
-                    demoLink: "#",
-                    repoLink: "#",
-                    downloadLink: "https://example.com/downloads/ai-chatbot.zip"
-                }
-                // Add more projects following this structure
-            ];
-
-            // --- User Authentication & Profile ---
-            const USER_STORAGE_KEY = 'bytency_user_auth';
+            
+            // State Management
+            let currentUser = null;
+            let currentProject = null;
+            const USER_STORAGE_KEY = 'bytency_user';
             const DOWNLOADS_STORAGE_KEY = 'bytency_downloads';
-            const CONTACTS_STORAGE_KEY = 'bytency_contacts';
 
-            let currentUser = null; // Stores logged-in user data
-
-            function getStoredUser() {
-                const userData = localStorage.getItem(USER_STORAGE_KEY);
-                if (userData) {
-                    try {
-                        currentUser = JSON.parse(userData);
-                        return true; // User found
-                    } catch (e) {
-                        console.error("Error parsing user data:", e);
-                        localStorage.removeItem(USER_STORAGE_KEY); // Corrupted data
-                        currentUser = null;
-                        return false;
-                    }
-                }
-                return false; // No user data found
+            // Initialize the application
+            function init() {
+                renderProjects(projectsData);
+                checkFirstVisit();
+                updateProfileDisplay();
+                updateDownloadsCount();
+                
+                // Add event listeners
+                setupEventListeners();
             }
 
-            function updateProfileDisplay() {
-                const isLoggedIn = getStoredUser();
-                profileDropdown.innerHTML = ''; // Clear previous content
-                profileDropdown.appendChild(profileInfoDiv);
-                profileDropdown.appendChild(profileActionsDiv);
-
-                if (isLoggedIn) {
-                    dropdownProfileName.textContent = currentUser.name;
-                    dropdownProfileEmail.textContent = currentUser.email;
-                    profileIcon.textContent = currentUser.name.charAt(0).toUpperCase();
-                    profileIcon.style.background = 'var(--secondary)'; // Change color for logged-in user
-
-                    editProfileBtnDropdown.style.display = 'flex';
-                    viewDownloadsBtnDropdown.style.display = 'flex';
-                    loginLogoutBtnDropdown.textContent = 'Logout';
-                    loginLogoutBtnDropdown.style.display = 'flex';
-                    loginLogoutBtnDropdown.id = 'logout-btn'; // Change ID for logout action
+            // Render projects to the grid
+            function renderProjects(projects) {
+                projectsGrid.innerHTML = '';
+                
+                projects.forEach(project => {
+                    const projectCard = document.createElement('div');
+                    projectCard.className = 'project-card';
+                    projectCard.setAttribute('data-project-id', project.id);
+                    projectCard.setAttribute('data-category', project.category);
                     
-                    // Ensure Edit Profile & View Downloads are visible
-                    document.getElementById('edit-profile-btn').style.display = 'flex';
-                    document.getElementById('view-downloads-btn').style.display = 'flex';
-
-
-                } else {
-                    dropdownProfileName.textContent = 'Guest User';
-                    dropdownProfileEmail.textContent = 'guest@example.com';
-                    profileIcon.textContent = '';
-                    profileIcon.innerHTML = '<i class="fas fa-user"></i>'; // Default icon
-                    profileIcon.style.background = 'var(--primary)';
-
-                    editProfileBtnDropdown.style.display = 'none';
-                    viewDownloadsBtnDropdown.style.display = 'none';
-                    loginLogoutBtnDropdown.textContent = 'Login / Register';
-                    loginLogoutBtnDropdown.style.display = 'flex';
-                    loginLogoutBtnDropdown.id = 'login-register-trigger'; // Change ID for login trigger
-                }
-            }
-
-            function handleLoginLogout(e) {
-                const targetId = e.target.id;
-                if (targetId === 'logout-btn') {
-                    localStorage.removeItem(USER_STORAGE_KEY);
-                    currentUser = null;
-                    updateProfileDisplay();
-                    // Optionally, redirect to home or show a message
-                    alert('You have been logged out.');
-                } else if (targetId === 'login-register-trigger') {
-                    showModal(loginRegisterModal);
-                    profileDropdown.classList.remove('active'); // Close dropdown
-                }
-            }
-
-            function showModal(modal) {
-                modal.classList.add('active');
-            }
-
-            function hideModal(modal) {
-                modal.classList.remove('active');
-            }
-
-            // --- Event Listeners ---
-
-            // Show Welcome Modal on first visit
-            if (!localStorage.getItem(USER_STORAGE_KEY)) {
-                showModal(welcomeModal);
-            }
-
-            // Profile Icon Click to toggle dropdown
-            profileArea.addEventListener('click', function(e) {
-                // Prevent click on profile icon from triggering login/logout immediately
-                if (e.target === profileIcon || profileIcon.contains(e.target)) {
-                    profileDropdown.classList.toggle('active');
-                }
-            });
-
-            // Close Modals
-            closeModalButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    this.closest('.modal-overlay').classList.remove('active');
-                    // Reset login/register view if closing
-                    if (this.closest('.modal-overlay').id === 'login-register-modal') {
-                         loginForm.style.display = 'block';
-                         registerFormModal.style.display = 'none';
-                         loginForm.reset();
-                         registerForm.reset();
-                    }
+                    projectCard.innerHTML = `
+                        <div class="project-header">
+                            <div class="project-icon">
+                                <i class="fas ${project.icon}"></i>
+                            </div>
+                            <div class="project-title">${project.title}</div>
+                            ${project.badge ? `<div class="project-badge">${project.badge}</div>` : ''}
+                        </div>
+                        <div class="project-content">
+                            <p class="project-description">${project.description}</p>
+                            <div class="project-features">
+                                ${project.features.map(feature => `<span class="project-feature">${feature}</span>`).join('')}
+                            </div>
+                            <div class="project-actions">
+                                <button class="view-details-btn" data-project-id="${project.id}">
+                                    <i class="fas fa-eye"></i> View Details
+                                </button>
+                                <button class="download-btn" data-project-id="${project.id}">
+                                    <i class="fas fa-download"></i> Download
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                    
+                    projectsGrid.appendChild(projectCard);
                 });
-            });
-
-            // Welcome Form Submission
-            welcomeForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                const userName = document.getElementById('user-name').value.trim();
-                const userEmail = document.getElementById('user-email').value.trim();
                 
-                currentUser = { name: userName, email: userEmail, id: Date.now().toString() }; // Simple ID
-                localStorage.setItem(USER_STORAGE_KEY, JSON.stringify(currentUser));
-                updateProfileDisplay();
-                hideModal(welcomeModal);
-                alert(`Welcome, ${userName}! Let's get started.`);
-            });
-
-            // Login/Register Form Toggles
-            const showRegisterFormBtn = document.getElementById('show-register-form');
-            const showLoginFormBtn = document.getElementById('show-login-form');
-
-            if (showRegisterFormBtn) showRegisterFormBtn.addEventListener('click', () => {
-                loginForm.style.display = 'none';
-                registerFormModal.style.display = 'block';
-            });
-            if (showLoginFormBtn) showLoginFormBtn.addEventListener('click', () => {
-                registerFormModal.style.display = 'none';
-                loginForm.style.display = 'block';
-            });
-
-            // Login Form Submission
-            loginForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                const email = document.getElementById('login-email').value.trim();
-                const password = document.getElementById('login-password').value; // Passwords usually not stored in simple localStorage
-                
-                // In a real app, you'd send this to a server for verification
-                // For demo, let's check if it matches registered user data
-                const registeredUsers = JSON.parse(localStorage.getItem(USER_STORAGE_KEY) || '{}'); // Assuming single user or first registered
-                
-                // Check if this is the first user or matches stored user data
-                if (registeredUsers && registeredUsers.email === email) {
-                     // Basic password check (highly insecure for real apps!)
-                    if (registeredUsers.password === password) {
-                        currentUser = registeredUsers;
-                        updateProfileDisplay();
-                        hideModal(loginRegisterModal);
-                        alert(`Welcome back, ${currentUser.name}!`);
-                        loginForm.reset();
-                    } else {
-                        alert('Incorrect password. Please try again.');
-                    }
-                } else {
-                    alert('User not found. Please register or check your email.');
-                }
-            });
-
-            // Register Form Submission
-            registerForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                const name = document.getElementById('register-name').value.trim();
-                const email = document.getElementById('register-email').value.trim();
-                const password = document.getElementById('register-password').value;
-
-                // Check if email already exists
-                const existingUser = JSON.parse(localStorage.getItem(USER_STORAGE_KEY));
-                if (existingUser && existingUser.email === email) {
-                    alert('This email is already registered. Please log in.');
-                    return;
-                }
-                
-                currentUser = { name: name, email: email, password: password, id: Date.now().toString() };
-                localStorage.setItem(USER_STORAGE_KEY, JSON.stringify(currentUser));
-                updateProfileDisplay();
-                hideModal(loginRegisterModal);
-                alert(`Welcome, ${name}! Your account has been created.`);
-                registerForm.reset();
-            });
-
-            // Profile Form Submission (Edit Profile)
-            profileForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                const userName = document.getElementById('profile-name').value.trim();
-                const userEmail = document.getElementById('profile-email').value.trim();
-                
-                if (currentUser) { // Ensure user is logged in
-                    currentUser.name = userName;
-                    currentUser.email = userEmail;
-                    localStorage.setItem(USER_STORAGE_KEY, JSON.stringify(currentUser));
-                    updateProfileDisplay();
-                    hideModal(profileModal);
-                    alert('Profile updated successfully!');
-                } else {
-                    alert('You need to be logged in to edit your profile.');
-                    hideModal(profileModal);
-                }
-            });
-
-            // Edit Profile Button Click (from dropdown)
-            document.addEventListener('click', function(e) {
-                if (e.target.id === 'edit-profile-btn') {
-                    const userData = JSON.parse(localStorage.getItem(USER_STORAGE_KEY));
-                    if (userData) {
-                        document.getElementById('profile-name').value = userData.name;
-                        document.getElementById('profile-email').value = userData.email;
-                        showModal(profileModal);
-                        profileDropdown.classList.remove('active');
-                    } else {
-                        alert('Please log in to edit your profile.');
-                    }
-                } else if (e.target.id === 'login-logout-btn') {
-                    // This button's ID changes based on login state
-                    handleLoginLogout(e);
-                } else if (e.target.id === 'view-downloads-btn') {
-                    displayDownloads();
-                    profileDropdown.classList.remove('active');
-                } else if (e.target.classList.contains('profile-action')) {
-                    // Catch other potential profile action clicks
-                    handleLoginLogout(e); // Handles logout if its ID is logout-btn
-                }
-            });
-
-
-            // View Downloads Button Click (from dropdown)
-            function displayDownloads() {
-                const downloads = JSON.parse(localStorage.getItem(DOWNLOADS_STORAGE_KEY)) || [];
-                const downloadsList = document.getElementById('downloads-list');
-                
-                downloadsList.innerHTML = ''; // Clear previous content
-                
-                if (downloads.length === 0) {
-                    downloadsList.innerHTML = '<p>You haven\'t downloaded any projects yet.</p>';
-                } else {
-                    downloads.forEach(download => {
-                        const downloadItem = document.createElement('div');
-                        downloadItem.classList.add('download-item'); // For potential styling
-                        downloadItem.style.marginBottom = '15px';
-                        downloadItem.innerHTML = `
-                            <h4 style="color: var(--secondary);">${download.title}</h4>
-                            <p>Downloaded on: ${new Date(download.timestamp).toLocaleString()}</p>
-                            <p><small>Category: ${download.category}</small></p>
-                        `;
-                        downloadsList.appendChild(downloadItem);
+                // Add event listeners to the new buttons
+                document.querySelectorAll('.view-details-btn').forEach(btn => {
+                    btn.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        const projectId = this.getAttribute('data-project-id');
+                        showProjectDetails(projectId);
                     });
-                }
+                });
                 
-                showModal(downloadsModal);
+                document.querySelectorAll('.download-btn').forEach(btn => {
+                    btn.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        const projectId = this.getAttribute('data-project-id');
+                        downloadProject(projectId);
+                    });
+                });
+                
+                // Make entire project card clickable to view details
+                document.querySelectorAll('.project-card').forEach(card => {
+                    card.addEventListener('click', function() {
+                        const projectId = this.getAttribute('data-project-id');
+                        showProjectDetails(projectId);
+                    });
+                });
             }
 
-            // Handle Download Buttons (on project cards)
-            downloadButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    // This button is intended for direct download, but we'll redirect to detail modal for this enhanced version
-                    // In a real scenario, this might download directly or redirect to a download link
-                    alert('Click "View Details" to learn more and download.');
-                });
-            });
-
-            // Handle View Details Buttons
-            viewDetailsButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    const projectCard = this.closest('.project-card');
-                    const projectId = projectCard.getAttribute('data-project-id');
-                    const project = projectsData.find(p => p.id === projectId);
-
-                    if (project) {
-                        showProjectDetailModal(project);
-                    } else {
-                        console.error("Project not found:", projectId);
-                    }
-                });
-            });
-
-            // Function to show Project Detail Modal
-            function showProjectDetailModal(project) {
-                detailProjectIcon.className = `project-icon fas ${project.icon}`; // Update icon class
+            // Show project details in modal
+            function showProjectDetails(projectId) {
+                const project = projectsData.find(p => p.id === projectId);
+                if (!project) return;
+                
+                currentProject = project;
+                
+                // Update modal content
+                detailProjectIcon.className = `project-icon`;
+                detailProjectIcon.innerHTML = `<i class="fas ${project.icon}"></i>`;
                 detailProjectTitle.textContent = project.title;
                 detailProjectDescription.textContent = project.description;
                 
@@ -1516,232 +1257,363 @@
                     featureSpan.textContent = feature;
                     detailProjectFeatures.appendChild(featureSpan);
                 });
-
-                // Populate extra links (Demo, Repo)
+                
+                // Populate links
                 projectExtraLinksDiv.innerHTML = '';
-                if (project.demoLink && project.demoLink !== '#') {
+                if (project.demoLink) {
                     const demoLink = document.createElement('a');
                     demoLink.href = project.demoLink;
                     demoLink.className = 'project-link';
-                    demoLink.textContent = 'View Demo';
                     demoLink.target = '_blank';
+                    demoLink.innerHTML = `<i class="fas fa-external-link-alt"></i> Live Demo`;
                     projectExtraLinksDiv.appendChild(demoLink);
                 }
-                if (project.repoLink && project.repoLink !== '#') {
+                
+                if (project.repoLink) {
                     const repoLink = document.createElement('a');
                     repoLink.href = project.repoLink;
                     repoLink.className = 'project-link';
-                    repoLink.textContent = 'View Repository';
                     repoLink.target = '_blank';
+                    repoLink.innerHTML = `<i class="fab fa-github"></i> Source Code`;
                     projectExtraLinksDiv.appendChild(repoLink);
                 }
-
-                // Update the download button in the modal
-                modalDownloadBtn.innerHTML = `<i class="fas fa-download"></i> Download ${project.title}`;
-                modalDownloadBtn.onclick = () => handleModalDownload(project); // Assign click handler
-
+                
+                // Set up download button
+                modalDownloadBtn.onclick = () => downloadProject(project.id);
+                
+                // Show the modal
                 showModal(projectDetailModal);
             }
 
-            // Handle Download from Project Detail Modal
-            function handleModalDownload(project) {
+            // Download project
+            function downloadProject(projectId) {
+                const project = projectsData.find(p => p.id === projectId);
+                if (!project) return;
+                
                 // Check if user is logged in
                 if (!currentUser) {
-                    alert('Please log in to download projects.');
-                    showModal(loginRegisterModal); // Show login modal
-                    profileDropdown.classList.remove('active'); // Close dropdown
-                    return; // Stop download for now
+                    showModal(loginRegisterModal);
+                    return;
                 }
-
-                // Simulate download process
-                alert(`Initiating download for: ${project.title}`);
-                // In a real app, this would be a server redirect or file stream
-                // For now, we can just record the download and provide a fake link
                 
-                // Record download in localStorage
+                // Record download
                 let downloads = JSON.parse(localStorage.getItem(DOWNLOADS_STORAGE_KEY)) || [];
-                const downloadEntry = {
-                    id: project.id,
-                    title: project.title,
-                    category: project.category,
-                    timestamp: new Date().toISOString()
-                };
+                downloads.push({
+                    projectId: project.id,
+                    projectName: project.title,
+                    downloadedAt: new Date().toISOString()
+                });
+                localStorage.setItem(DOWNLOADS_STORAGE_KEY, JSON.stringify(downloads));
                 
-                // Avoid duplicate downloads in history (optional, based on project ID)
-                if (!downloads.some(d => d.id === downloadEntry.id)) {
-                    downloads.push(downloadEntry);
-                    localStorage.setItem(DOWNLOADS_STORAGE_KEY, JSON.stringify(downloads));
-                    updateDownloadsCount(downloads.length);
-                }
-
-                // Trigger the actual download (simulated)
-                // In a real scenario, you'd use window.location.href = project.downloadLink;
-                // For demo, we'll just open the link in a new tab
+                // Update downloads count
+                updateDownloadsCount();
+                
+                // Open download link in new tab
                 window.open(project.downloadLink, '_blank');
-
-                // Show confirmation within the modal button
-                const originalHTML = modalDownloadBtn.innerHTML;
-                modalDownloadBtn.innerHTML = '<i class="fas fa-check"></i> Downloaded!';
-                modalDownloadBtn.style.background = 'var(--success)';
-                modalDownloadBtn.disabled = true; // Disable button temporarily
-
-                setTimeout(() => {
-                    modalDownloadBtn.innerHTML = originalHTML;
-                    modalDownloadBtn.style.background = '';
-                    modalDownloadBtn.disabled = false;
-                    hideModal(projectDetailModal); // Close modal after successful download confirmation
-                }, 2000);
+                
+                // Show confirmation
+                alert(`Download started for: ${project.title}`);
             }
 
-            // Contact Form Submission
-            contactForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                const contactName = document.getElementById('contact-name').value.trim();
-                const contactEmail = document.getElementById('contact-email').value.trim();
-                const contactMessage = document.getElementById('contact-message').value.trim();
-                
-                const contactData = {
-                    name: contactName,
-                    email: contactEmail,
-                    message: contactMessage,
-                    date: new Date().toISOString()
-                };
-                
-                let contacts = JSON.parse(localStorage.getItem(CONTACTS_STORAGE_KEY)) || [];
-                contacts.push(contactData);
-                localStorage.setItem(CONTACTS_STORAGE_KEY, JSON.stringify(contacts));
-                
-                alert('Thank you for your message! We\'ll get back to you soon.');
-                contactForm.reset();
-            });
-
-            // Navigation Link Click
-            navLinks.forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const targetPage = this.getAttribute('data-page');
-                    
-                    // Update active nav link
-                    navLinks.forEach(nav => nav.classList.remove('active'));
-                    this.classList.add('active');
-                    
-                    // Show target page
-                    pageSections.forEach(section => section.classList.remove('active'));
-                    document.getElementById(targetPage).classList.add('active');
-                    
-                    // Close mobile menu if open
-                    navLinksContainer.classList.remove('active');
-                    mobileMenuBtn.querySelector('i').classList.add('fa-bars');
-                    mobileMenuBtn.querySelector('i').classList.remove('fa-times');
-                });
-            });
-
-            // Mobile Menu Toggle
-            mobileMenuBtn.addEventListener('click', function() {
-                navLinksContainer.classList.toggle('active');
-                const icon = this.querySelector('i');
-                if (navLinksContainer.classList.contains('active')) {
-                    icon.classList.remove('fa-bars');
-                    icon.classList.add('fa-times');
-                } else {
-                    icon.classList.remove('fa-times');
-                    icon.classList.add('fa-bars');
+            // Check if it's user's first visit
+            function checkFirstVisit() {
+                if (!localStorage.getItem('bytency_visited')) {
+                    showModal(welcomeModal);
+                    localStorage.setItem('bytency_visited', 'true');
                 }
-            });
-
-            // Search Bar Input
-            searchBar.addEventListener('input', function() {
-                const searchTerm = this.value.toLowerCase().trim();
-                filterProjects(searchTerm);
-            });
-
-            // Project Filter Buttons
-            projectFilters.forEach(filterBtn => {
-                filterBtn.addEventListener('click', function() {
-                    const selectedFilter = this.getAttribute('data-filter');
-                    
-                    // Update active filter button
-                    projectFilters.forEach(btn => btn.classList.remove('active'));
-                    this.classList.add('active');
-                    
-                    filterProjects(searchBar.value.toLowerCase().trim(), selectedFilter);
-                });
-            });
-
-            // Function to filter projects by search term and category
-            function filterProjects(searchTerm, categoryFilter = 'all') {
-                projectsGrid.querySelectorAll('.project-card').forEach(card => {
-                    const cardCategory = card.getAttribute('data-category');
-                    const title = card.querySelector('.project-title').textContent.toLowerCase();
-                    const description = card.querySelector('.project-description').textContent.toLowerCase();
-                    const features = Array.from(card.querySelectorAll('.project-feature')).map(f => f.textContent.toLowerCase()).join(' ');
-
-                    const matchesSearch = title.includes(searchTerm) || description.includes(searchTerm) || features.includes(searchTerm);
-                    const matchesCategory = categoryFilter === 'all' || cardCategory === categoryFilter;
-
-                    if (matchesSearch && matchesCategory) {
-                        card.style.display = 'block';
-                    } else {
-                        card.style.display = 'none';
-                    }
-                });
             }
 
+            // Update profile display based on login status
+            function updateProfileDisplay() {
+                const userData = localStorage.getItem(USER_STORAGE_KEY);
+                if (userData) {
+                    currentUser = JSON.parse(userData);
+                    const profileName = document.querySelector('.profile-name');
+                    const profileEmail = document.querySelector('.profile-email');
+                    const loginLogoutBtn = document.getElementById('login-logout-btn');
+                    
+                    profileName.textContent = currentUser.name;
+                    profileEmail.textContent = currentUser.email;
+                    profileIcon.innerHTML = currentUser.name.charAt(0).toUpperCase();
+                    loginLogoutBtn.innerHTML = '<i class="fas fa-sign-out-alt"></i> Logout';
+                } else {
+                    const profileName = document.querySelector('.profile-name');
+                    const profileEmail = document.querySelector('.profile-email');
+                    const loginLogoutBtn = document.getElementById('login-logout-btn');
+                    
+                    profileName.textContent = 'Guest User';
+                    profileEmail.textContent = 'guest@example.com';
+                    profileIcon.innerHTML = '<i class="fas fa-user"></i>';
+                    loginLogoutBtn.innerHTML = '<i class="fas fa-sign-in-alt"></i> Login / Register';
+                }
+            }
 
-            // Footer Social Links
-            socialLinks.forEach(link => {
-                link.addEventListener('click', function(e) {
+            // Update downloads count badge
+            function updateDownloadsCount() {
+                const downloads = JSON.parse(localStorage.getItem(DOWNLOADS_STORAGE_KEY)) || [];
+                downloadsBadge.textContent = downloads.length;
+            }
+
+            // Show modal function
+            function showModal(modal) {
+                modal.classList.add('active');
+            }
+
+            // Hide modal function
+            function hideModal(modal) {
+                modal.classList.remove('active');
+            }
+
+            // Setup all event listeners
+            function setupEventListeners() {
+                // Profile icon click
+                profileIcon.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    profileDropdown.classList.toggle('active');
+                });
+
+                // Close dropdown when clicking outside
+                document.addEventListener('click', function() {
+                    profileDropdown.classList.remove('active');
+                });
+
+                // Mobile menu toggle
+                mobileMenuBtn.addEventListener('click', function() {
+                    navLinksContainer.classList.toggle('active');
+                    const icon = this.querySelector('i');
+                    if (navLinksContainer.classList.contains('active')) {
+                        icon.classList.remove('fa-bars');
+                        icon.classList.add('fa-times');
+                    } else {
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                    }
+                });
+
+                // Close modals
+                closeModalButtons.forEach(button => {
+                    button.addEventListener('click', function() {
+                        const modal = this.closest('.modal-overlay');
+                        hideModal(modal);
+                    });
+                });
+
+                // Navigation links
+                navLinks.forEach(link => {
+                    link.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        const targetPage = this.getAttribute('data-page');
+                        
+                        // Update active nav link
+                        navLinks.forEach(nav => nav.classList.remove('active'));
+                        this.classList.add('active');
+                        
+                        // Show target page
+                        pageSections.forEach(section => section.classList.remove('active'));
+                        document.getElementById(targetPage).classList.add('active');
+                        
+                        // Close mobile menu if open
+                        navLinksContainer.classList.remove('active');
+                        mobileMenuBtn.querySelector('i').classList.add('fa-bars');
+                        mobileMenuBtn.querySelector('i').classList.remove('fa-times');
+                    });
+                });
+
+                // Search functionality
+                searchBar.addEventListener('input', function() {
+                    const searchTerm = this.value.toLowerCase();
+                    filterProjects(searchTerm);
+                });
+
+                // Project filters
+                projectFilters.forEach(filter => {
+                    filter.addEventListener('click', function() {
+                        const filterValue = this.getAttribute('data-filter');
+                        
+                        // Update active filter
+                        projectFilters.forEach(btn => btn.classList.remove('active'));
+                        this.classList.add('active');
+                        
+                        filterProjects(searchBar.value, filterValue);
+                    });
+                });
+
+                // Form submissions
+                welcomeForm.addEventListener('submit', function(e) {
                     e.preventDefault();
-                    const platform = this.querySelector('i').classList[1]; // e.g., 'fa-instagram'
-                    let url = '#'; // Default fallback
-                    switch(platform) {
-                        case 'fa-instagram': url = 'https://www.instagram.com/your-ig'; break; // Replace with actual link
-                        case 'fa-telegram': url = 'https://t.me/your-tg'; break; // Replace with actual link
-                        case 'fa-whatsapp': url = 'https://wa.me/1234567890'; break; // Replace with actual link
-                        case 'fa-github': url = 'https://github.com/your-github'; break; // Replace with actual link
-                        // Add more platforms
-                    }
-                    window.open(url, '_blank');
+                    const name = document.getElementById('user-name').value;
+                    const email = document.getElementById('user-email').value;
+                    
+                    currentUser = { name, email };
+                    localStorage.setItem(USER_STORAGE_KEY, JSON.stringify(currentUser));
+                    
+                    updateProfileDisplay();
+                    hideModal(welcomeModal);
                 });
-            });
 
-            // --- Helper Functions ---
-            function updateDownloadsCount(count) {
-                downloadsBadge.textContent = count;
-            }
-
-            // --- Initial Setup ---
-            updateProfileDisplay(); // Set up profile icon and dropdown based on login state
-            filterProjects(''); // Initial load to show all projects
-
-            // --- Click listener for dynamically added buttons (like login/logout in dropdown) ---
-            document.addEventListener('click', function(e) {
-                if (e.target.id === 'edit-profile-btn') { // Edit profile from dropdown
-                    const userData = JSON.parse(localStorage.getItem(USER_STORAGE_KEY));
-                    if (userData) {
-                        document.getElementById('profile-name').value = userData.name;
-                        document.getElementById('profile-email').value = userData.email;
-                        showModal(profileModal);
-                        profileDropdown.classList.remove('active');
+                loginForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const email = document.getElementById('login-email').value;
+                    const password = document.getElementById('login-password').value;
+                    
+                    // Simple validation
+                    if (email && password) {
+                        currentUser = { 
+                            name: email.split('@')[0], 
+                            email: email,
+                            password: password 
+                        };
+                        localStorage.setItem(USER_STORAGE_KEY, JSON.stringify(currentUser));
+                        
+                        updateProfileDisplay();
+                        hideModal(loginRegisterModal);
+                        alert('Login successful!');
                     } else {
-                        alert('Please log in to edit your profile.');
+                        alert('Please enter both email and password');
                     }
-                } else if (e.target.id === 'view-downloads-btn') { // View downloads from dropdown
+                });
+
+                document.getElementById('show-register-form').addEventListener('click', function() {
+                    hideModal(loginRegisterModal);
+                    showModal(registerModal);
+                });
+
+                registerForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const name = document.getElementById('register-name').value;
+                    const email = document.getElementById('register-email').value;
+                    const password = document.getElementById('register-password').value;
+                    
+                    if (name && email && password) {
+                        currentUser = { name, email, password };
+                        localStorage.setItem(USER_STORAGE_KEY, JSON.stringify(currentUser));
+                        
+                        updateProfileDisplay();
+                        hideModal(registerModal);
+                        alert('Registration successful!');
+                    } else {
+                        alert('Please fill all fields');
+                    }
+                });
+
+                document.getElementById('show-login-form').addEventListener('click', function() {
+                    hideModal(registerModal);
+                    showModal(loginRegisterModal);
+                });
+
+                profileForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const name = document.getElementById('profile-name').value;
+                    const email = document.getElementById('profile-email').value;
+                    
+                    if (name && email) {
+                        currentUser = { ...currentUser, name, email };
+                        localStorage.setItem(USER_STORAGE_KEY, JSON.stringify(currentUser));
+                        
+                        updateProfileDisplay();
+                        hideModal(profileModal);
+                        alert('Profile updated successfully!');
+                    } else {
+                        alert('Please fill all fields');
+                    }
+                });
+
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const name = document.getElementById('contact-name').value;
+                    const email = document.getElementById('contact-email').value;
+                    const message = document.getElementById('contact-message').value;
+                    
+                    if (name && email && message) {
+                        // In a real app, you would send this data to a server
+                        alert('Thank you for your message! We will get back to you soon.');
+                        contactForm.reset();
+                    } else {
+                        alert('Please fill all fields');
+                    }
+                });
+
+                // Profile dropdown actions
+                document.getElementById('edit-profile-btn').addEventListener('click', function() {
+                    if (currentUser) {
+                        document.getElementById('profile-name').value = currentUser.name;
+                        document.getElementById('profile-email').value = currentUser.email;
+                        showModal(profileModal);
+                    } else {
+                        alert('Please login to edit your profile');
+                        showModal(loginRegisterModal);
+                    }
+                    profileDropdown.classList.remove('active');
+                });
+
+                document.getElementById('view-downloads-btn').addEventListener('click', function() {
                     displayDownloads();
                     profileDropdown.classList.remove('active');
-                } else if (e.target.id === 'logout-btn') { // Logout button in dropdown
-                    localStorage.removeItem(USER_STORAGE_KEY);
-                    currentUser = null;
-                    updateProfileDisplay();
-                    alert('You have been logged out.');
-                    profileDropdown.classList.remove('active');
-                } else if (e.target.id === 'login-register-trigger') { // Login/Register button in dropdown
-                    showModal(loginRegisterModal);
-                    profileDropdown.classList.remove('active');
-                }
-            });
+                });
 
-        }); // End of DOMContentLoaded
+                document.getElementById('login-logout-btn').addEventListener('click', function() {
+                    if (currentUser) {
+                        // Logout
+                        localStorage.removeItem(USER_STORAGE_KEY);
+                        currentUser = null;
+                        updateProfileDisplay();
+                        alert('Logged out successfully');
+                    } else {
+                        // Login
+                        showModal(loginRegisterModal);
+                    }
+                    profileDropdown.classList.remove('active');
+                });
+
+                // View downloads from the bookmark icon
+                document.getElementById('view-downloads').addEventListener('click', function() {
+                    displayDownloads();
+                });
+            }
+
+            // Filter projects based on search term and category
+            function filterProjects(searchTerm, category = 'all') {
+                const filteredProjects = projectsData.filter(project => {
+                    const matchesSearch = project.title.toLowerCase().includes(searchTerm) || 
+                                         project.description.toLowerCase().includes(searchTerm) ||
+                                         project.features.some(feature => feature.toLowerCase().includes(searchTerm));
+                    
+                    const matchesCategory = category === 'all' || project.category === category;
+                    
+                    return matchesSearch && matchesCategory;
+                });
+                
+                renderProjects(filteredProjects);
+            }
+
+            // Display download history
+            function displayDownloads() {
+                const downloads = JSON.parse(localStorage.getItem(DOWNLOADS_STORAGE_KEY)) || [];
+                const downloadsList = document.getElementById('downloads-list');
+                
+                if (downloads.length === 0) {
+                    downloadsList.innerHTML = '<p>You haven\'t downloaded any projects yet.</p>';
+                } else {
+                    downloadsList.innerHTML = '<h4>Your Download History:</h4>';
+                    
+                    downloads.forEach(download => {
+                        const project = projectsData.find(p => p.id === download.projectId);
+                        const downloadItem = document.createElement('div');
+                        downloadItem.className = 'download-item';
+                        downloadItem.innerHTML = `
+                            <p><strong>${download.projectName}</strong></p>
+                            <p><small>Downloaded on: ${new Date(download.downloadedAt).toLocaleDateString()}</small></p>
+                        `;
+                        downloadsList.appendChild(downloadItem);
+                    });
+                }
+                
+                showModal(downloadsModal);
+            }
+
+            // Initialize the app
+            init();
+        });
     </script>
 </body>
 </html>
