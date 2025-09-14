@@ -1,0 +1,1747 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bytency - Turning Bytes into Brilliance</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Global Styles */
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #06b6d4;
+            --dark: #1e293b;
+            --light: #f8fafc;
+            --gray: #64748b;
+            --success: #10b981;
+            --glass-bg: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+            color: var(--light);
+            min-height: 100vh;
+            padding-top: 70px; /* Space for fixed header */
+            padding-bottom: 80px; /* Space for footer */
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header & Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(15, 23, 42, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 15px 0;
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--light);
+            cursor: pointer; /* Make logo clickable to go home */
+        }
+
+        .logo span {
+            color: var(--secondary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--secondary);
+        }
+
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--secondary);
+            border-radius: 2px;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .downloads-count {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .downloads-count i {
+            font-size: 1.2rem;
+        }
+
+        .count-badge {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: var(--secondary);
+            color: var(--dark);
+            font-size: 0.7rem;
+            font-weight: 700;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .profile-area { /* Combined profile icon and dropdown trigger */
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .profile-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--primary);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            font-weight: 600;
+            transition: transform 0.3s;
+            font-size: 1.1rem;
+            color: var(--light);
+        }
+
+        .profile-icon:hover {
+            transform: scale(1.05);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--light);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 60px 0;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--gray);
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+
+        /* Search Bar */
+        .search-container {
+            max-width: 600px;
+            margin: 0 auto 40px;
+            position: relative;
+        }
+
+        .search-bar {
+            width: 100%;
+            padding: 15px 20px;
+            border-radius: 50px;
+            border: none;
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            color: var(--light);
+            font-size: 1rem;
+            padding-left: 50px;
+            border: 1px solid var(--glass-border);
+            transition: all 0.3s;
+        }
+
+        .search-bar:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px var(--primary);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--gray);
+        }
+
+        /* Project Filters/Categories */
+        .project-filters {
+            text-align: center;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .filter-btn {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            color: var(--light);
+            padding: 8px 18px;
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: var(--light);
+        }
+
+        /* Projects Grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+
+        .project-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid var(--glass-border);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer; /* Make card clickable for details */
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .project-header {
+            padding: 20px;
+            border-bottom: 1px solid var(--glass-border);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .project-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.2rem;
+        }
+
+        .project-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .project-badge {
+            margin-left: auto;
+            background: var(--success);
+            color: var(--light);
+            font-size: 0.7rem;
+            padding: 3px 8px;
+            border-radius: 20px;
+        }
+
+        .project-content {
+            padding: 20px;
+        }
+
+        .project-description {
+            color: var(--gray);
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+            display: -webkit-box; /* For truncating text */
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .project-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .project-feature {
+            background: rgba(79, 70, 229, 0.2);
+            color: var(--primary);
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .download-btn {
+            width: 100%;
+            padding: 10px;
+            background: linear-gradient(to right, var(--primary), var(--primary-dark));
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: flex; /* For icon alignment */
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .download-btn:hover {
+            background: linear-gradient(to right, var(--primary-dark), var(--primary));
+            transform: translateY(-2px);
+        }
+
+        /* Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal {
+            background: var(--dark);
+            border-radius: 15px;
+            overflow: hidden;
+            width: 90%;
+            max-width: 500px;
+            border: 1px solid var(--glass-border);
+            transform: translateY(20px);
+            transition: transform 0.3s;
+            position: relative; /* For close button positioning */
+        }
+
+        .modal-overlay.active .modal {
+            transform: translateY(0);
+        }
+
+        .modal-header {
+            padding: 20px;
+            border-bottom: 1px solid var(--glass-border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .close-modal {
+            background: none;
+            border: none;
+            color: var(--gray);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: color 0.3s;
+            position: absolute; /* Position it inside header */
+            top: 15px;
+            right: 15px;
+        }
+
+        .close-modal:hover {
+            color: var(--light);
+        }
+
+        .modal-body {
+            padding: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px 15px;
+            border-radius: 8px;
+            border: 1px solid var(--glass-border);
+            background: rgba(30, 41, 59, 0.5);
+            color: var(--light);
+            font-size: 1rem;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .form-submit {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(to right, var(--primary), var(--primary-dark));
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .form-submit:hover {
+            background: linear-gradient(to right, var(--primary-dark), var(--primary));
+        }
+
+        /* Profile Dropdown */
+        .profile-dropdown {
+            position: absolute;
+            top: 60px; /* Position below the profile icon */
+            right: 0px; /* Align with the right edge of the nav */
+            background: var(--dark);
+            border-radius: 10px;
+            width: 250px;
+            padding: 15px;
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            z-index: 1001;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .profile-dropdown.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .profile-info {
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--glass-border);
+            margin-bottom: 10px;
+        }
+
+        .profile-name {
+            font-weight: 600;
+            margin-bottom: 5px;
+            font-size: 1.1rem;
+        }
+
+        .profile-email {
+            color: var(--gray);
+            font-size: 0.9rem;
+            word-break: break-all; /* Prevent long emails from breaking layout */
+        }
+
+        .profile-actions .profile-action { /* Style for buttons inside dropdown */
+            background: rgba(79, 70, 229, 0.2);
+            color: var(--primary);
+            border: none;
+            padding: 8px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            text-align: left;
+            font-weight: 500;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1rem;
+        }
+
+        .profile-actions .profile-action:hover {
+            background: rgba(79, 70, 229, 0.3);
+        }
+
+        /* Page Sections */
+        .page-section {
+            display: none;
+            padding: 40px 0;
+        }
+
+        .page-section.active {
+            display: block;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .about-content, .contact-content { /* Shared styling for content blocks */
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid var(--glass-border);
+        }
+
+        .about-text {
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .about-highlight {
+            color: var(--secondary);
+            font-weight: 600;
+        }
+
+        /* Project Detail Modal */
+        .project-detail-modal .modal-body {
+            padding: 30px;
+        }
+        .project-detail-modal .modal-title {
+            font-size: 1.8rem;
+        }
+        .project-detail-modal .project-icon {
+            width: 50px;
+            height: 50px;
+            font-size: 1.5rem;
+        }
+        .project-detail-modal .project-description {
+            font-size: 1rem;
+            color: var(--light);
+            margin-bottom: 25px;
+            -webkit-line-clamp: unset; /* Show full description */
+        }
+        .project-detail-modal .project-features {
+            margin-bottom: 25px;
+            gap: 10px;
+        }
+        .project-detail-modal .project-feature {
+            padding: 7px 15px;
+            font-size: 0.9rem;
+        }
+        .project-detail-modal .download-btn {
+            padding: 12px;
+            font-size: 1.1rem;
+        }
+        .project-detail-modal .project-link { /* Link to demo/repo */
+            display: inline-block;
+            margin-top: 15px;
+            color: var(--secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        .project-detail-modal .project-link:hover {
+            color: var(--primary);
+        }
+
+        /* Footer */
+        footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(15, 23, 42, 0.9);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid var(--glass-border);
+            padding: 20px 0;
+            text-align: center;
+            z-index: 1000;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .social-links a {
+            color: var(--gray);
+            font-size: 1.4rem;
+            margin: 0 10px;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: var(--light);
+        }
+
+        .footer-text {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        .footer-text .highlight {
+            color: var(--secondary);
+            font-weight: 500;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none; /* Hidden by default, shown via JS toggle */
+                flex-direction: column;
+                position: absolute;
+                top: 70px; /* Below header */
+                left: 0;
+                width: 100%;
+                background: rgba(15, 23, 42, 0.95);
+                backdrop-filter: blur(10px);
+                padding: 20px 0;
+                gap: 20px;
+                text-align: center;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links a {
+                padding: 10px 0;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                flex-direction: column;
+            }
+
+            .social-links {
+                margin-bottom: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container nav-container">
+            <div class="logo">
+                <i class="fas fa-code"></i>
+                Bytency<span>.</span>
+            </div>
+
+            <nav class="nav-links">
+                <a href="#" class="nav-link" data-page="home">Home</a>
+                <a href="#" class="nav-link" data-page="projects">Projects</a>
+                <a href="#" class="nav-link" data-page="about">About</a>
+                <a href="#" class="nav-link" data-page="contact">Contact</a>
+            </nav>
+
+            <div class="nav-right">
+                <div class="downloads-count">
+                    <i class="fas fa-bookmark"></i>
+                    <div class="count-badge">0</div>
+                </div>
+
+                <div class="profile-area">
+                    <div class="profile-icon">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    </div>
+
+                <button class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <div class="profile-dropdown">
+        </div>
+
+    <main>
+        <section id="home" class="page-section active">
+            <div class="container">
+                <div class="hero">
+                    <h1>Turning Bytes into Brilliance</h1>
+                    <p>Discover high-quality code projects to accelerate your development process</p>
+                    
+                    <div class="search-container">
+                        <i class="fas fa-search search-icon"></i>
+                        <input type="text" class="search-bar" placeholder="Search projects...">
+                    </div>
+                </div>
+
+                <div class="project-filters">
+                    <button class="filter-btn active" data-filter="all">All Categories</button>
+                    <button class="filter-btn" data-filter="birthday">Happy Birthday</button>
+                    <button class="filter-btn" data-filter="ecommerce">E-Commerce</button>
+                    <button class="filter-btn" data-filter="game">Games</button>
+                    <button class="filter-btn" data-filter="ui">UI Components</button>
+                    <button class="filter-btn" data-filter="data">Data Viz</button>
+                    <button class="filter-btn" data-filter="ai">AI</button>
+                </div>
+
+                 <div class="projects-grid" id="projects-grid">
+                    <div class="project-card" data-project-id="1" data-category="birthday">
+                        <div class="project-header">
+                            <div class="project-icon">
+                                <i class="fas fa-birthday-cake"></i>
+                            </div>
+                            <div class="project-title">Happy Birthday Project</div>
+                            <div class="project-badge">Trending 🔥</div>
+                        </div>
+                        <div class="project-content">
+                            <p class="project-description">A beautiful birthday celebration website with animations and interactive elements. Perfect for wishing someone special!</p>
+                            <div class="project-features">
+                                <span class="project-feature">HTML</span>
+                                <span class="project-feature">CSS</span>
+                                <span class="project-feature">JS</span>
+                                <span class="project-feature">Responsive</span>
+                            </div>
+                            <a href="https://github.com/coderrrjay/Happy-Birthday-.git" class="download-btn" target="_blank">
+                                <i class="fas fa-download"></i> Download Project
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="project-card" data-project-id="2" data-category="ecommerce">
+                        <div class="project-header">
+                            <div class="project-icon">
+                                <i class="fas fa-shopping-cart"></i>
+                            </div>
+                            <div class="project-title">E-Commerce Dashboard</div>
+                            <div class="project-badge">Popular ⭐</div>
+                        </div>
+                        <div class="project-content">
+                            <p class="project-description">Complete e-commerce dashboard with analytics, product management, and order tracking. Built for scalability.</p>
+                            <div class="project-features">
+                                <span class="project-feature">React</span>
+                                <span class="project-feature">Node.js</span>
+                                <span class="project-feature">MongoDB</span>
+                                <span class="project-feature">Responsive</span>
+                            </div>
+                            <a href="https://l.ead.me/Laddu" class="download-btn" target="_blank">
+                                <i class="fas fa-download"></i> Download Project
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="project-card" data-project-id="3" data-category="game">
+                        <div class="project-header">
+                            <div class="project-icon">
+                                <i class="fas fa-gamepad"></i>
+                            </div>
+                            <div class="project-title">JavaScript Game</div>
+                        </div>
+                        <div class="project-content">
+                            <p class="project-description">A fun browser-based game built with vanilla JavaScript and HTML5 Canvas. Challenge your friends!</p>
+                            <div class="project-features">
+                                <span class="project-feature">JavaScript</span>
+                                <span class="project-feature">HTML5</span>
+                                <span class="project-feature">Canvas</span>
+                                <span class="project-feature">Game</span>
+                            </div>
+                            <a href="https://l.ead.me/Laddu" class="download-btn" target="_blank">
+                                <i class="fas fa-download"></i> Download Project
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="project-card" data-project-id="4" data-category="ui">
+                        <div class="project-header">
+                            <div class="project-icon">
+                                <i class="fas fa-mobile-alt"></i>
+                            </div>
+                            <div class="project-title">UI Component Library</div>
+                            <div class="project-badge">New ✨</div>
+                        </div>
+                        <div class="project-content">
+                            <p class="project-description">A collection of reusable UI components for modern web applications. Speed up your UI development.</p>
+                            <div class="project-features">
+                                <span class="project-feature">Vue.js</span>
+                                <span class="project-feature">SCSS</span>
+                                <span class="project-feature">Component-based</span>
+                            </div>
+                            <a href="https://l.ead.me/Laddu" class="download-btn" target="_blank">
+                                <i class="fas fa-download"></i> Download Project
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="project-card" data-project-id="5" data-category="data">
+                        <div class="project-header">
+                            <div class="project-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <div class="project-title">Data Visualization</div>
+                        </div>
+                        <div class="project-content">
+                            <p class="project-description">Interactive data visualization dashboard with multiple chart types and filtering options.</p>
+                            <div class="project-features">
+                                <span class="project-feature">D3.js</span>
+                                <span class="project-feature">React</span>
+                                <span class="project-feature">API Integration</span>
+                            </div>
+                            <a href="https://l.ead.me/Laddu" class="download-btn" target="_blank">
+                                <i class="fas fa-download"></i> Download Project
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="project-card" data-project-id="6" data-category="ai">
+                        <div class="project-header">
+                            <div class="project-icon">
+                                <i class="fas fa-robot"></i>
+                            </div>
+                            <div class="project-title">AI Chatbot</div>
+                            <div class="project-badge">Trending 🔥</div>
+                        </div>
+                        <div class="project-content">
+                            <p class="project-description">An intelligent chatbot implementation with natural language processing capabilities.</p>
+                            <div class="project-features">
+                                <span class="project-feature">Python</span>
+                                <span class="project-feature">TensorFlow</span>
+                                <span class="project-feature">NLP</span>
+                            </div>
+                            <a href="https://l.ead.me/Laddu" class="download-btn" target="_blank">
+                                <i class="fas fa-download"></i> Download Project
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <section id="about" class="page-section">
+            <div class="container">
+                <h2 class="section-title">About Bytency</h2>
+                <div class="about-content">
+                    <p class="about-text">
+                        Bytency is an innovative code hub platform with a clear vision: <span class="about-highlight">"To be the ultimate hub for high-quality, pre-tested, and regularly updated code projects."</span>
+                    </p>
+                    <p class="about-text">
+                        Our mission is to empower developers by providing them with ready-to-use code solutions that accelerate development, reduce errors, and inspire creativity.
+                    </p>
+                    <p class="about-text">
+                        This platform was created with love and dedication by <span class="about-highlight">J A Y 🖤</span>, who envisioned a place where developers could share and discover brilliant code solutions.
+                    </p>
+                    <p class="about-text">
+                        Every project in our repository undergoes rigorous testing and quality checks to ensure that you receive only the best, most reliable code for your applications.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="page-section">
+            <div class="container">
+                <h2 class="section-title">Get In Touch</h2>
+                <div class="contact-content">
+                    <form id="contact-form">
+                        <div class="form-group">
+                            <label for="contact-name" class="form-label">Your Name</label>
+                            <input type="text" id="contact-name" class="form-input" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="contact-email" class="form-label">Your Email</label>
+                            <input type="email" id="contact-email" class="form-input" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="contact-message" class="form-label">Message</label>
+                            <textarea id="contact-message" class="form-input" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="form-submit">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container footer-content">
+            <div class="social-links">
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" aria-label="Telegram"><i class="fab fa-telegram"></i></a>
+                <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                </div>
+            <div class="footer-text">
+                © 2023 Bytency. All rights reserved. Crafted with <span class="highlight">passion</span> by Jay.
+            </div>
+        </div>
+    </footer>
+
+    <div class="modal-overlay" id="welcome-modal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 class="modal-title">Welcome to Bytency!</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="welcome-form">
+                    <div class="form-group">
+                        <label for="user-name" class="form-label">Your Name</label>
+                        <input type="text" id="user-name" class="form-input" placeholder="Enter your name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="user-email" class="form-label">Your Email</label>
+                        <input type="email" id="user-email" class="form-input" placeholder="Enter your email" required>
+                    </div>
+                    <button type="submit" class="form-submit">Get Started</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="login-register-modal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 class="modal-title">Login / Register</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="login-form">
+                    <div class="form-group">
+                        <label for="login-email" class="form-label">Email</label>
+                        <input type="email" id="login-email" class="form-input" placeholder="Enter your email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="login-password" class="form-label">Password</label>
+                        <input type="password" id="login-password" class="form-input" placeholder="Enter your password" required>
+                    </div>
+                    <button type="submit" class="form-submit">Login</button>
+                </form>
+                <p class="text-center" style="margin-top: 15px; color: var(--gray);">Don't have an account? <button id="show-register-form" class="btn-link">Register</button></p>
+            </div>
+        </div>
+        <div class="modal" id="register-form-modal" style="display: none;">
+            <div class="modal-header">
+                <h3 class="modal-title">Register Account</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="register-form">
+                    <div class="form-group">
+                        <label for="register-name" class="form-label">Your Name</label>
+                        <input type="text" id="register-name" class="form-input" placeholder="Enter your name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="register-email" class="form-label">Email</label>
+                        <input type="email" id="register-email" class="form-input" placeholder="Enter your email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="register-password" class="form-label">Password</label>
+                        <input type="password" id="register-password" class="form-input" placeholder="Enter your password" required>
+                    </div>
+                    <button type="submit" class="form-submit">Register</button>
+                </form>
+                <p class="text-center" style="margin-top: 15px; color: var(--gray);">Already have an account? <button id="show-login-form" class="btn-link">Login</button></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="profile-modal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 class="modal-title">Edit Profile</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="profile-form">
+                    <div class="form-group">
+                        <label for="profile-name" class="form-label">Your Name</label>
+                        <input type="text" id="profile-name" class="form-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="profile-email" class="form-label">Your Email</label>
+                        <input type="email" id="profile-email" class="form-input" required>
+                    </div>
+                    <button type="submit" class="form-submit">Save Changes</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="downloads-modal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 class="modal-title">Your Downloads</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div id="downloads-list">
+                    <p>Your download history will appear here.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay project-detail-modal" id="project-detail-modal">
+        <div class="modal">
+            <div class="modal-header">
+                <div class="project-header-detail"> <div class="project-icon" id="detail-project-icon"></div>
+                    <h3 class="modal-title" id="detail-project-title"></h3>
+                </div>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p class="project-description" id="detail-project-description"></p>
+                <div class="project-features" id="detail-project-features"></div>
+                
+                <div id="project-extra-links">
+                    </div>
+
+                <button class="download-btn" id="modal-download-btn">
+                    <i class="fas fa-download"></i> Download Project
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // --- DOM Elements ---
+            const welcomeModal = document.getElementById('welcome-modal');
+            const loginRegisterModal = document.getElementById('login-register-modal');
+            const registerFormModal = document.getElementById('register-form-modal'); // The register form div
+            const profileModal = document.getElementById('profile-modal');
+            const downloadsModal = document.getElementById('downloads-modal');
+            const projectDetailModal = document.getElementById('project-detail-modal');
+
+            const profileDropdown = document.querySelector('.profile-dropdown');
+            const profileArea = document.querySelector('.profile-area'); // The container for icon and dropdown
+            const profileIcon = document.querySelector('.profile-icon');
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const navLinksContainer = document.querySelector('.nav-links');
+            const closeModalButtons = document.querySelectorAll('.close-modal');
+
+            const welcomeForm = document.getElementById('welcome-form');
+            const loginForm = document.getElementById('login-form');
+            const registerForm = document.getElementById('register-form');
+            const profileForm = document.getElementById('profile-form');
+            const contactForm = document.getElementById('contact-form');
+
+            const editProfileBtn = document.getElementById('edit-profile-btn');
+            const viewDownloadsBtn = document.getElementById('view-downloads-btn');
+            const downloadButtons = document.querySelectorAll('.download-btn:not(.view-details-btn)'); // Exclude detail view buttons
+            const viewDetailsButtons = document.querySelectorAll('.view-details-btn');
+            const downloadsBadge = document.querySelector('.count-badge');
+            const navLinks = document.querySelectorAll('.nav-link');
+            const pageSections = document.querySelectorAll('.page-section');
+            const searchBar = document.querySelector('.search-bar');
+            const projectCards = document.querySelectorAll('.project-card');
+            const projectFilters = document.querySelectorAll('.filter-btn');
+            const projectsGrid = document.getElementById('projects-grid');
+
+            // Footer Social Links
+            const socialLinks = document.querySelectorAll('.social-links a');
+
+            // Profile Dropdown Elements (to be populated by JS)
+            const dropdownProfileName = document.createElement('div');
+            dropdownProfileName.className = 'profile-name';
+            const dropdownProfileEmail = document.createElement('div');
+            dropdownProfileEmail.className = 'profile-email';
+            const profileInfoDiv = document.createElement('div');
+            profileInfoDiv.className = 'profile-info';
+            profileInfoDiv.appendChild(dropdownProfileName);
+            profileInfoDiv.appendChild(dropdownProfileEmail);
+
+            const profileActionsDiv = document.createElement('div');
+            profileActionsDiv.className = 'profile-actions';
+
+            const editProfileBtnDropdown = document.createElement('button');
+            editProfileBtnDropdown.className = 'profile-action';
+            editProfileBtnDropdown.innerHTML = '<i class="fas fa-edit"></i> Edit Profile';
+            editProfileBtnDropdown.id = 'edit-profile-btn'; // Retain ID for JS hook
+
+            const viewDownloadsBtnDropdown = document.createElement('button');
+            viewDownloadsBtnDropdown.className = 'profile-action';
+            viewDownloadsBtnDropdown.innerHTML = '<i class="fas fa-download"></i> View Downloads';
+            viewDownloadsBtnDropdown.id = 'view-downloads-btn'; // Retain ID for JS hook
+
+            const loginLogoutBtnDropdown = document.createElement('button');
+            loginLogoutBtnDropdown.className = 'profile-action';
+            loginLogoutBtnDropdown.id = 'login-logout-btn';
+
+            profileActionsDiv.appendChild(editProfileBtnDropdown);
+            profileActionsDiv.appendChild(viewDownloadsBtnDropdown);
+            profileActionsDiv.appendChild(loginLogoutBtnDropdown);
+
+            profileDropdown.appendChild(profileInfoDiv);
+            profileDropdown.appendChild(profileActionsDiv);
+
+            // Project Detail Modal Elements
+            const detailProjectIcon = document.getElementById('detail-project-icon');
+            const detailProjectTitle = document.getElementById('detail-project-title');
+            const detailProjectDescription = document.getElementById('detail-project-description');
+            const detailProjectFeatures = document.getElementById('detail-project-features');
+            const projectExtraLinksDiv = document.getElementById('project-extra-links');
+            const modalDownloadBtn = document.getElementById('modal-download-btn');
+
+            // --- Sample Project Data (Simulating a backend) ---
+            const projectsData = [
+                {
+                    id: "1", category: "birthday", icon: "fa-birthday-cake", title: "Happy Birthday Project", badge: "Trending 🔥",
+                    description: "A beautiful birthday celebration website with animations and interactive elements. Perfect for wishing someone special! Features include customizable messages, countdown timer, and charming animations.",
+                    features: ["HTML", "CSS", "JS", "Responsive", "Animations"],
+                    demoLink: "#", // Placeholder
+                    repoLink: "#", // Placeholder
+                    downloadLink: "https://example.com/downloads/happy-birthday.zip" // Placeholder
+                },
+                {
+                    id: "2", category: "ecommerce", icon: "fa-shopping-cart", title: "E-Commerce Dashboard", badge: "Popular ⭐",
+                    description: "Complete e-commerce dashboard with analytics, product management, and order tracking. Built for scalability and ease of use, allowing businesses to manage their online store efficiently.",
+                    features: ["React", "Node.js", "MongoDB", "Responsive", "API Integration"],
+                    demoLink: "#",
+                    repoLink: "#",
+                    downloadLink: "https://example.com/downloads/ecommerce-dashboard.zip"
+                },
+                {
+                    id: "3", category: "game", icon: "fa-gamepad", title: "JavaScript Game",
+                    description: "A fun browser-based game built with vanilla JavaScript and HTML5 Canvas. Challenge your friends with this engaging arcade-style game!",
+                    features: ["JavaScript", "HTML5", "Canvas", "Game", "Performance Optimized"],
+                    demoLink: "#",
+                    repoLink: "#",
+                    downloadLink: "https://example.com/downloads/js-game.zip"
+                },
+                {
+                    id: "4", category: "ui", icon: "fa-mobile-alt", title: "UI Component Library", badge: "New ✨",
+                    description: "A collection of reusable UI components for modern web applications. Speed up your UI development with pre-built, customizable, and accessible components.",
+                    features: ["Vue.js", "SCSS", "Component-based", "Theming"],
+                    demoLink: "#",
+                    repoLink: "#",
+                    downloadLink: "https://example.com/downloads/ui-library.zip"
+                },
+                {
+                    id: "5", category: "data", icon: "fa-chart-line", title: "Data Visualization",
+                    description: "Interactive data visualization dashboard with multiple chart types and filtering options. Helps in understanding complex data at a glance.",
+                    features: ["D3.js", "React", "API Integration", "Charts", "Filtering"],
+                    demoLink: "#",
+                    repoLink: "#",
+                    downloadLink: "https://example.com/downloads/data-viz.zip"
+                },
+                {
+                    id: "6", category: "ai", icon: "fa-robot", title: "AI Chatbot", badge: "Trending 🔥",
+                    description: "An intelligent chatbot implementation with natural language processing capabilities. Integrates with various platforms for seamless interaction.",
+                    features: ["Python", "TensorFlow", "NLP", "Machine Learning"],
+                    demoLink: "#",
+                    repoLink: "#",
+                    downloadLink: "https://example.com/downloads/ai-chatbot.zip"
+                }
+                // Add more projects following this structure
+            ];
+
+            // --- User Authentication & Profile ---
+            const USER_STORAGE_KEY = 'bytency_user_auth';
+            const DOWNLOADS_STORAGE_KEY = 'bytency_downloads';
+            const CONTACTS_STORAGE_KEY = 'bytency_contacts';
+
+            let currentUser = null; // Stores logged-in user data
+
+            function getStoredUser() {
+                const userData = localStorage.getItem(USER_STORAGE_KEY);
+                if (userData) {
+                    try {
+                        currentUser = JSON.parse(userData);
+                        return true; // User found
+                    } catch (e) {
+                        console.error("Error parsing user data:", e);
+                        localStorage.removeItem(USER_STORAGE_KEY); // Corrupted data
+                        currentUser = null;
+                        return false;
+                    }
+                }
+                return false; // No user data found
+            }
+
+            function updateProfileDisplay() {
+                const isLoggedIn = getStoredUser();
+                profileDropdown.innerHTML = ''; // Clear previous content
+                profileDropdown.appendChild(profileInfoDiv);
+                profileDropdown.appendChild(profileActionsDiv);
+
+                if (isLoggedIn) {
+                    dropdownProfileName.textContent = currentUser.name;
+                    dropdownProfileEmail.textContent = currentUser.email;
+                    profileIcon.textContent = currentUser.name.charAt(0).toUpperCase();
+                    profileIcon.style.background = 'var(--secondary)'; // Change color for logged-in user
+
+                    editProfileBtnDropdown.style.display = 'flex';
+                    viewDownloadsBtnDropdown.style.display = 'flex';
+                    loginLogoutBtnDropdown.textContent = 'Logout';
+                    loginLogoutBtnDropdown.style.display = 'flex';
+                    loginLogoutBtnDropdown.id = 'logout-btn'; // Change ID for logout action
+                    
+                    // Ensure Edit Profile & View Downloads are visible
+                    document.getElementById('edit-profile-btn').style.display = 'flex';
+                    document.getElementById('view-downloads-btn').style.display = 'flex';
+
+
+                } else {
+                    dropdownProfileName.textContent = 'Guest User';
+                    dropdownProfileEmail.textContent = 'guest@example.com';
+                    profileIcon.textContent = '';
+                    profileIcon.innerHTML = '<i class="fas fa-user"></i>'; // Default icon
+                    profileIcon.style.background = 'var(--primary)';
+
+                    editProfileBtnDropdown.style.display = 'none';
+                    viewDownloadsBtnDropdown.style.display = 'none';
+                    loginLogoutBtnDropdown.textContent = 'Login / Register';
+                    loginLogoutBtnDropdown.style.display = 'flex';
+                    loginLogoutBtnDropdown.id = 'login-register-trigger'; // Change ID for login trigger
+                }
+            }
+
+            function handleLoginLogout(e) {
+                const targetId = e.target.id;
+                if (targetId === 'logout-btn') {
+                    localStorage.removeItem(USER_STORAGE_KEY);
+                    currentUser = null;
+                    updateProfileDisplay();
+                    // Optionally, redirect to home or show a message
+                    alert('You have been logged out.');
+                } else if (targetId === 'login-register-trigger') {
+                    showModal(loginRegisterModal);
+                    profileDropdown.classList.remove('active'); // Close dropdown
+                }
+            }
+
+            function showModal(modal) {
+                modal.classList.add('active');
+            }
+
+            function hideModal(modal) {
+                modal.classList.remove('active');
+            }
+
+            // --- Event Listeners ---
+
+            // Show Welcome Modal on first visit
+            if (!localStorage.getItem(USER_STORAGE_KEY)) {
+                showModal(welcomeModal);
+            }
+
+            // Profile Icon Click to toggle dropdown
+            profileArea.addEventListener('click', function(e) {
+                // Prevent click on profile icon from triggering login/logout immediately
+                if (e.target === profileIcon || profileIcon.contains(e.target)) {
+                    profileDropdown.classList.toggle('active');
+                }
+            });
+
+            // Close Modals
+            closeModalButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    this.closest('.modal-overlay').classList.remove('active');
+                    // Reset login/register view if closing
+                    if (this.closest('.modal-overlay').id === 'login-register-modal') {
+                         loginForm.style.display = 'block';
+                         registerFormModal.style.display = 'none';
+                         loginForm.reset();
+                         registerForm.reset();
+                    }
+                });
+            });
+
+            // Welcome Form Submission
+            welcomeForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const userName = document.getElementById('user-name').value.trim();
+                const userEmail = document.getElementById('user-email').value.trim();
+                
+                currentUser = { name: userName, email: userEmail, id: Date.now().toString() }; // Simple ID
+                localStorage.setItem(USER_STORAGE_KEY, JSON.stringify(currentUser));
+                updateProfileDisplay();
+                hideModal(welcomeModal);
+                alert(`Welcome, ${userName}! Let's get started.`);
+            });
+
+            // Login/Register Form Toggles
+            const showRegisterFormBtn = document.getElementById('show-register-form');
+            const showLoginFormBtn = document.getElementById('show-login-form');
+
+            if (showRegisterFormBtn) showRegisterFormBtn.addEventListener('click', () => {
+                loginForm.style.display = 'none';
+                registerFormModal.style.display = 'block';
+            });
+            if (showLoginFormBtn) showLoginFormBtn.addEventListener('click', () => {
+                registerFormModal.style.display = 'none';
+                loginForm.style.display = 'block';
+            });
+
+            // Login Form Submission
+            loginForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const email = document.getElementById('login-email').value.trim();
+                const password = document.getElementById('login-password').value; // Passwords usually not stored in simple localStorage
+                
+                // In a real app, you'd send this to a server for verification
+                // For demo, let's check if it matches registered user data
+                const registeredUsers = JSON.parse(localStorage.getItem(USER_STORAGE_KEY) || '{}'); // Assuming single user or first registered
+                
+                // Check if this is the first user or matches stored user data
+                if (registeredUsers && registeredUsers.email === email) {
+                     // Basic password check (highly insecure for real apps!)
+                    if (registeredUsers.password === password) {
+                        currentUser = registeredUsers;
+                        updateProfileDisplay();
+                        hideModal(loginRegisterModal);
+                        alert(`Welcome back, ${currentUser.name}!`);
+                        loginForm.reset();
+                    } else {
+                        alert('Incorrect password. Please try again.');
+                    }
+                } else {
+                    alert('User not found. Please register or check your email.');
+                }
+            });
+
+            // Register Form Submission
+            registerForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const name = document.getElementById('register-name').value.trim();
+                const email = document.getElementById('register-email').value.trim();
+                const password = document.getElementById('register-password').value;
+
+                // Check if email already exists
+                const existingUser = JSON.parse(localStorage.getItem(USER_STORAGE_KEY));
+                if (existingUser && existingUser.email === email) {
+                    alert('This email is already registered. Please log in.');
+                    return;
+                }
+                
+                currentUser = { name: name, email: email, password: password, id: Date.now().toString() };
+                localStorage.setItem(USER_STORAGE_KEY, JSON.stringify(currentUser));
+                updateProfileDisplay();
+                hideModal(loginRegisterModal);
+                alert(`Welcome, ${name}! Your account has been created.`);
+                registerForm.reset();
+            });
+
+            // Profile Form Submission (Edit Profile)
+            profileForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const userName = document.getElementById('profile-name').value.trim();
+                const userEmail = document.getElementById('profile-email').value.trim();
+                
+                if (currentUser) { // Ensure user is logged in
+                    currentUser.name = userName;
+                    currentUser.email = userEmail;
+                    localStorage.setItem(USER_STORAGE_KEY, JSON.stringify(currentUser));
+                    updateProfileDisplay();
+                    hideModal(profileModal);
+                    alert('Profile updated successfully!');
+                } else {
+                    alert('You need to be logged in to edit your profile.');
+                    hideModal(profileModal);
+                }
+            });
+
+            // Edit Profile Button Click (from dropdown)
+            document.addEventListener('click', function(e) {
+                if (e.target.id === 'edit-profile-btn') {
+                    const userData = JSON.parse(localStorage.getItem(USER_STORAGE_KEY));
+                    if (userData) {
+                        document.getElementById('profile-name').value = userData.name;
+                        document.getElementById('profile-email').value = userData.email;
+                        showModal(profileModal);
+                        profileDropdown.classList.remove('active');
+                    } else {
+                        alert('Please log in to edit your profile.');
+                    }
+                } else if (e.target.id === 'login-logout-btn') {
+                    // This button's ID changes based on login state
+                    handleLoginLogout(e);
+                } else if (e.target.id === 'view-downloads-btn') {
+                    displayDownloads();
+                    profileDropdown.classList.remove('active');
+                } else if (e.target.classList.contains('profile-action')) {
+                    // Catch other potential profile action clicks
+                    handleLoginLogout(e); // Handles logout if its ID is logout-btn
+                }
+            });
+
+
+            // View Downloads Button Click (from dropdown)
+            function displayDownloads() {
+                const downloads = JSON.parse(localStorage.getItem(DOWNLOADS_STORAGE_KEY)) || [];
+                const downloadsList = document.getElementById('downloads-list');
+                
+                downloadsList.innerHTML = ''; // Clear previous content
+                
+                if (downloads.length === 0) {
+                    downloadsList.innerHTML = '<p>You haven\'t downloaded any projects yet.</p>';
+                } else {
+                    downloads.forEach(download => {
+                        const downloadItem = document.createElement('div');
+                        downloadItem.classList.add('download-item'); // For potential styling
+                        downloadItem.style.marginBottom = '15px';
+                        downloadItem.innerHTML = `
+                            <h4 style="color: var(--secondary);">${download.title}</h4>
+                            <p>Downloaded on: ${new Date(download.timestamp).toLocaleString()}</p>
+                            <p><small>Category: ${download.category}</small></p>
+                        `;
+                        downloadsList.appendChild(downloadItem);
+                    });
+                }
+                
+                showModal(downloadsModal);
+            }
+
+            // Handle Download Buttons (on project cards)
+            downloadButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // This button is intended for direct download, but we'll redirect to detail modal for this enhanced version
+                    // In a real scenario, this might download directly or redirect to a download link
+                    alert('Click "View Details" to learn more and download.');
+                });
+            });
+
+            // Handle View Details Buttons
+            viewDetailsButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const projectCard = this.closest('.project-card');
+                    const projectId = projectCard.getAttribute('data-project-id');
+                    const project = projectsData.find(p => p.id === projectId);
+
+                    if (project) {
+                        showProjectDetailModal(project);
+                    } else {
+                        console.error("Project not found:", projectId);
+                    }
+                });
+            });
+
+            // Function to show Project Detail Modal
+            function showProjectDetailModal(project) {
+                detailProjectIcon.className = `project-icon fas ${project.icon}`; // Update icon class
+                detailProjectTitle.textContent = project.title;
+                detailProjectDescription.textContent = project.description;
+                
+                // Populate features
+                detailProjectFeatures.innerHTML = '';
+                project.features.forEach(feature => {
+                    const featureSpan = document.createElement('span');
+                    featureSpan.className = 'project-feature';
+                    featureSpan.textContent = feature;
+                    detailProjectFeatures.appendChild(featureSpan);
+                });
+
+                // Populate extra links (Demo, Repo)
+                projectExtraLinksDiv.innerHTML = '';
+                if (project.demoLink && project.demoLink !== '#') {
+                    const demoLink = document.createElement('a');
+                    demoLink.href = project.demoLink;
+                    demoLink.className = 'project-link';
+                    demoLink.textContent = 'View Demo';
+                    demoLink.target = '_blank';
+                    projectExtraLinksDiv.appendChild(demoLink);
+                }
+                if (project.repoLink && project.repoLink !== '#') {
+                    const repoLink = document.createElement('a');
+                    repoLink.href = project.repoLink;
+                    repoLink.className = 'project-link';
+                    repoLink.textContent = 'View Repository';
+                    repoLink.target = '_blank';
+                    projectExtraLinksDiv.appendChild(repoLink);
+                }
+
+                // Update the download button in the modal
+                modalDownloadBtn.innerHTML = `<i class="fas fa-download"></i> Download ${project.title}`;
+                modalDownloadBtn.onclick = () => handleModalDownload(project); // Assign click handler
+
+                showModal(projectDetailModal);
+            }
+
+            // Handle Download from Project Detail Modal
+            function handleModalDownload(project) {
+                // Check if user is logged in
+                if (!currentUser) {
+                    alert('Please log in to download projects.');
+                    showModal(loginRegisterModal); // Show login modal
+                    profileDropdown.classList.remove('active'); // Close dropdown
+                    return; // Stop download for now
+                }
+
+                // Simulate download process
+                alert(`Initiating download for: ${project.title}`);
+                // In a real app, this would be a server redirect or file stream
+                // For now, we can just record the download and provide a fake link
+                
+                // Record download in localStorage
+                let downloads = JSON.parse(localStorage.getItem(DOWNLOADS_STORAGE_KEY)) || [];
+                const downloadEntry = {
+                    id: project.id,
+                    title: project.title,
+                    category: project.category,
+                    timestamp: new Date().toISOString()
+                };
+                
+                // Avoid duplicate downloads in history (optional, based on project ID)
+                if (!downloads.some(d => d.id === downloadEntry.id)) {
+                    downloads.push(downloadEntry);
+                    localStorage.setItem(DOWNLOADS_STORAGE_KEY, JSON.stringify(downloads));
+                    updateDownloadsCount(downloads.length);
+                }
+
+                // Trigger the actual download (simulated)
+                // In a real scenario, you'd use window.location.href = project.downloadLink;
+                // For demo, we'll just open the link in a new tab
+                window.open(project.downloadLink, '_blank');
+
+                // Show confirmation within the modal button
+                const originalHTML = modalDownloadBtn.innerHTML;
+                modalDownloadBtn.innerHTML = '<i class="fas fa-check"></i> Downloaded!';
+                modalDownloadBtn.style.background = 'var(--success)';
+                modalDownloadBtn.disabled = true; // Disable button temporarily
+
+                setTimeout(() => {
+                    modalDownloadBtn.innerHTML = originalHTML;
+                    modalDownloadBtn.style.background = '';
+                    modalDownloadBtn.disabled = false;
+                    hideModal(projectDetailModal); // Close modal after successful download confirmation
+                }, 2000);
+            }
+
+            // Contact Form Submission
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const contactName = document.getElementById('contact-name').value.trim();
+                const contactEmail = document.getElementById('contact-email').value.trim();
+                const contactMessage = document.getElementById('contact-message').value.trim();
+                
+                const contactData = {
+                    name: contactName,
+                    email: contactEmail,
+                    message: contactMessage,
+                    date: new Date().toISOString()
+                };
+                
+                let contacts = JSON.parse(localStorage.getItem(CONTACTS_STORAGE_KEY)) || [];
+                contacts.push(contactData);
+                localStorage.setItem(CONTACTS_STORAGE_KEY, JSON.stringify(contacts));
+                
+                alert('Thank you for your message! We\'ll get back to you soon.');
+                contactForm.reset();
+            });
+
+            // Navigation Link Click
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetPage = this.getAttribute('data-page');
+                    
+                    // Update active nav link
+                    navLinks.forEach(nav => nav.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Show target page
+                    pageSections.forEach(section => section.classList.remove('active'));
+                    document.getElementById(targetPage).classList.add('active');
+                    
+                    // Close mobile menu if open
+                    navLinksContainer.classList.remove('active');
+                    mobileMenuBtn.querySelector('i').classList.add('fa-bars');
+                    mobileMenuBtn.querySelector('i').classList.remove('fa-times');
+                });
+            });
+
+            // Mobile Menu Toggle
+            mobileMenuBtn.addEventListener('click', function() {
+                navLinksContainer.classList.toggle('active');
+                const icon = this.querySelector('i');
+                if (navLinksContainer.classList.contains('active')) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                } else {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            });
+
+            // Search Bar Input
+            searchBar.addEventListener('input', function() {
+                const searchTerm = this.value.toLowerCase().trim();
+                filterProjects(searchTerm);
+            });
+
+            // Project Filter Buttons
+            projectFilters.forEach(filterBtn => {
+                filterBtn.addEventListener('click', function() {
+                    const selectedFilter = this.getAttribute('data-filter');
+                    
+                    // Update active filter button
+                    projectFilters.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    filterProjects(searchBar.value.toLowerCase().trim(), selectedFilter);
+                });
+            });
+
+            // Function to filter projects by search term and category
+            function filterProjects(searchTerm, categoryFilter = 'all') {
+                projectsGrid.querySelectorAll('.project-card').forEach(card => {
+                    const cardCategory = card.getAttribute('data-category');
+                    const title = card.querySelector('.project-title').textContent.toLowerCase();
+                    const description = card.querySelector('.project-description').textContent.toLowerCase();
+                    const features = Array.from(card.querySelectorAll('.project-feature')).map(f => f.textContent.toLowerCase()).join(' ');
+
+                    const matchesSearch = title.includes(searchTerm) || description.includes(searchTerm) || features.includes(searchTerm);
+                    const matchesCategory = categoryFilter === 'all' || cardCategory === categoryFilter;
+
+                    if (matchesSearch && matchesCategory) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            }
+
+
+            // Footer Social Links
+            socialLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const platform = this.querySelector('i').classList[1]; // e.g., 'fa-instagram'
+                    let url = '#'; // Default fallback
+                    switch(platform) {
+                        case 'fa-instagram': url = 'https://www.instagram.com/your-ig'; break; // Replace with actual link
+                        case 'fa-telegram': url = 'https://t.me/your-tg'; break; // Replace with actual link
+                        case 'fa-whatsapp': url = 'https://wa.me/1234567890'; break; // Replace with actual link
+                        case 'fa-github': url = 'https://github.com/your-github'; break; // Replace with actual link
+                        // Add more platforms
+                    }
+                    window.open(url, '_blank');
+                });
+            });
+
+            // --- Helper Functions ---
+            function updateDownloadsCount(count) {
+                downloadsBadge.textContent = count;
+            }
+
+            // --- Initial Setup ---
+            updateProfileDisplay(); // Set up profile icon and dropdown based on login state
+            filterProjects(''); // Initial load to show all projects
+
+            // --- Click listener for dynamically added buttons (like login/logout in dropdown) ---
+            document.addEventListener('click', function(e) {
+                if (e.target.id === 'edit-profile-btn') { // Edit profile from dropdown
+                    const userData = JSON.parse(localStorage.getItem(USER_STORAGE_KEY));
+                    if (userData) {
+                        document.getElementById('profile-name').value = userData.name;
+                        document.getElementById('profile-email').value = userData.email;
+                        showModal(profileModal);
+                        profileDropdown.classList.remove('active');
+                    } else {
+                        alert('Please log in to edit your profile.');
+                    }
+                } else if (e.target.id === 'view-downloads-btn') { // View downloads from dropdown
+                    displayDownloads();
+                    profileDropdown.classList.remove('active');
+                } else if (e.target.id === 'logout-btn') { // Logout button in dropdown
+                    localStorage.removeItem(USER_STORAGE_KEY);
+                    currentUser = null;
+                    updateProfileDisplay();
+                    alert('You have been logged out.');
+                    profileDropdown.classList.remove('active');
+                } else if (e.target.id === 'login-register-trigger') { // Login/Register button in dropdown
+                    showModal(loginRegisterModal);
+                    profileDropdown.classList.remove('active');
+                }
+            });
+
+        }); // End of DOMContentLoaded
+    </script>
+</body>
+</html>
